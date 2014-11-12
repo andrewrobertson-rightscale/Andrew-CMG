@@ -1,0 +1,1 @@
+RightScale Cookbooks go here

@@ -1,0 +1,41 @@
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias nano='nano -T4 -E -w $1 $2 $3 $4 $5 $6 $7 $8 $9'
+alias pico='nano -T4 -E -w $1 $2 $3 $4 $5 $6 $7 $8 $9'
+alias grep='grep -G --color=auto'
+alias error_log='tail -f /etc/httpd/logs/error_log'
+alias rclog='tail -f /var/log/dev/rclib-error.log'
+alias gl='git log --pretty=format:"%h %an %ad %s" --date=short'
+alias gll='git log --graph --decorate --pretty=oneline --abbrev-commit'
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+export LANG=C
+export g="\033[1;30m"
+export w="\033[0;37m"
+export bw="\033[1;37m"
+export gr="\033[0;36m"
+export bg="\033[1;36m"
+export l_tl="+"
+export l_m="-"
+export l_bl="+"
+export l_v="\263"
+export l_dot="."
+export l_spec="\372"
+export l_ls="\264"
+export l_rs="\303"
+export l_tr="\277"
+export l_br="\331"
+export l_ar="\362"
+export pl1="\n\[$g\]$l_tl[\[$bg\]\w\[$g\]]$l_m--- -- -"
+export pl2="\n\[$g\]$l_bl$l_m\[$w\]\u\[$bg\]@\[$w\]<%= @server_deployment %>: <%= @server_name %>\[$g\](\[$bw\]\l\[$g\]) [\[$w\]\!\[$g\]:\[$w\]\#\[$g\]] >> \[$bw\]"
+export PS1="$pl1$pl2"
+export EDITOR=nano
+PROMPT_COMMAND='echo -ne "\033]0;${USER} @ <%= @server_deployment %> - <%= @server_name %>:${PWD/#$HOME/~}"; echo -ne "\007"'

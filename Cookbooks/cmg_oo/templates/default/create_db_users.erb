@@ -1,0 +1,64 @@
+#!/usr/bin/php
+<?php
+$excel_data = <<<EOF
+1 360tuna   tunafish    nRe3h2Dv8BNo58x3
+1 airsoftsociety    7878sdff    8h7fsd45gfhfgh
+1 arkansashunting   arky    n3nxh3uEUsjpew38u2sd3
+1 beekeepingforums  beekeeper   Xh93xuDWFw9DeF3vF3x7DF3
+1 bersaforum    bersa43r    g4r545rgb54
+1 caracalforum  caracalman  3FjsH3Q3813hhzSj3s8
+1 catfish1  catfishcharlie  n38Ch3x9sN3jhs0Z02Jd
+1 cattleforum   cattle  Cj398sHd8z38iSdFjXf3
+1 chickdb   8y7hr45f    ne59hfcdcc
+1 cztalk    cztalker    n8Dj3Fh2Dv3O0zP
+1 dairygoatinfo dairygoatman    3jX83hs83hFhEQTUTY92u3uyt
+1 firearmstalk  firearmslogin   3df54sdfd8ajs9d8ds
+1 georgiahunting    gahunting   7hgE^g4redf!!!
+1 georgiapackvb gpvb    X4H30jTVk9z93dFT
+1 foroglock forgl6ocko  as4h54iu
+1 hpff_vb   s4g5h   s4g5hs4g
+1 hstoday   hstodayadmin    30sHjD903zF9h309LjTY923
+1 marlin    h45hjf  hj45jerthj4
+1 midwesthorse  mrhorse wQDFhw9SkuSw8DF3Fhw9DF3xDe93
+1 MWTVB mwtvb   xsS3j388hj3h3szFH38
+1 otn   otndudeman  asffffb5643mm
+1 ohiowaterfowler   waterfowl   aD8jh3ucn33IXjh3ucn392i3
+1 paracordforum paracordguy k39DFhw9DF3xDe93xSk3uSw8RU
+1 pigforum  pig sH3zTY9dF9h30j90
+1 prepareforum  preforum    a3sdj89a7dnn
+1 rabbitdogs    rabbitdawg  j3hcZ38sX38sQ39sV39gfg
+1 rugerforum    rugerman    n7ry8u6t5
+1 springfield   spring  X4HwXxK383G30jjeIwX
+1 db111983_steyr    steyr   sY9zT30jhH399dF0
+1 goatspot  mrgoat  gh83jd8213sd03jsd90d
+1 ktog  afs4g5  f45gb6ht
+1 theslingshotforum slingshot   U3uSw8RUGkeuD7DF3DF3xDe93x
+1 tractorforum  tractman    df5gjfghff
+1 twospoke  twoadmin    xxx4dtyh5ryj
+1 velospace_drupal2 rfd89hvf    89hjng8r
+1 xdforum   xdforum4t4rf    fg345y456n56j
+1 tul   ip34man asfs446fggf
+1 resource_monitor  resourcemon 2W0fJ8303xf7jcF91
+1 email_marketer markety84 njfd7g78sfag
+EOF;
+
+    foreach(explode("\n", $excel_data) as $line) {
+        $line = preg_replace('!\s+!', ' ', $line);
+        list($enabled, $dbname, $username, $password) = explode(" ", trim($line));
+        $account = array(
+            'enabled' => $enabled,
+            'dbname' => trim($dbname),
+            'username' => trim($username),
+            'password' => trim($password)
+        );
+        if ((bool) $account['enabled']) {
+
+$sql = <<<EOF
+create database if not exists $dbname; create user '$username'@'%' identified by '$password'; grant ALL on $dbname.* to '$username'@'%' identified by '$password'; flush privileges;
+EOF;
+            $cmd = "mysql --execute \"{$sql}\"";
+            echo "Running: {$cmd}\n";
+            system($cmd);
+        }
+    }
+?>

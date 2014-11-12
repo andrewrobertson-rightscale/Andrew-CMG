@@ -1,0 +1,229 @@
+#!/usr/bin/php
+<?php
+    ini_set('date.timezone', 'America/Detroit');
+	define('DEBUG_SCRIPT', false);
+	define('BACKUP_SRC_DIR', '/mnt/databases/backups_work');
+	define('BACKUP_DST_DIR', '/mnt/databases/backups');
+	define('BACKUP_RETAIN_DIR', '/mnt/databases/backups_retain');
+	define('DS', '/');
+	define('RETENTION_DAYS', 3);
+	$today = new DateTime('now');
+	$retention_window = array();
+
+	$databases = array(
+		'360tuna',
+		'airsoftsociety',
+		'arkansashunting',
+		'beekeepingforums',
+		'bersaforum',
+		'caracalforum',
+		'catfish1',
+		'cattleforum',
+		'chickdb',
+		'cztalk',
+		'dairygoatinfo',
+		'db111983_steyr',
+		'email_marketer',
+		'firearmstalk',
+		'foroglock',
+		'georgiahunting',
+		'georgiapackvb',
+        'georgiapacking_gapack',
+		'goatspot',
+		'helpdesk',
+		'hpff_vb',
+		'hstoday',
+		'iplogging',
+		'ktog',
+		'marlin',
+		'midwesthorse',
+		'MWTVB',
+		'ohiowaterfowler',
+		'otn',
+		'paracordforum',
+		'performance_schema',
+		'pigforum',
+		'prepareforum',
+		'rabbitdogs',
+		'resource_monitor',
+		'rugerforum',
+		'springfield',
+		'theslingshotforum',
+		'tractorforum',
+		'tul',
+		'twospoke',
+		'velospace_ddrupal2',
+		'velospace_drupal2',
+		'xdforum',
+		'zipcodes'
+	);
+
+	create_dir_recursive(BACKUP_SRC_DIR);
+	create_dir_recursive(BACKUP_RETAIN_DIR);
+	create_dir_recursive(BACKUP_DST_DIR);
+
+	//create retention window
+	for ($i=0; $i < RETENTION_DAYS; $i++) {
+		$today = new DateTime('now');
+		$period = "P{$i}D";
+		array_push($retention_window, $today->sub(new DateInterval($period))->format('Y-m-d'));
+	}
+	//remove today from retention window
+	$retention_window_not_today = $retention_window;
+	$today = array_shift($retention_window_not_today);
+
+    if ($dh = opendir(BACKUP_DST_DIR)) {
+		//retention - move files that are within retention window to retain directory, delete all the others
+        while (($file = readdir($dh)) !== false) {
+            if ($file != '.' && $file != '..') {
+            	foreach($retention_window_not_today as $date_string) {
+            		if (strpos($file, $date_string) !== false) {
+            			if (DEBUG_SCRIPT) echo 'Retaining: ' . BACKUP_DST_DIR . DS . $file . ' ... ' . BACKUP_RETAIN_DIR . DS . $file . "\n";
+            			move_file(BACKUP_DST_DIR . DS . $file, BACKUP_RETAIN_DIR . DS . $file);
+            		}
+            	}
+            	if (strpos($file, 'latest') === false) {
+	    			remove_file(BACKUP_DST_DIR . DS . $file);
+            	}
+            }
+        }
+        //process databases
+		foreach($databases as $database) {
+			$backup_file = "{$database}_bu_{$today}.sql.gz";
+			backup_mysql_database($database, BACKUP_RETAIN_DIR, $backup_file);
+			remove_file(BACKUP_DST_DIR . DS . "_latest-*");
+			copy_file(BACKUP_RETAIN_DIR . DS . $backup_file, BACKUP_RETAIN_DIR . DS . "_latest-{$database}.sql.gz");
+		}
+    } else {
+    	trigger_error('Cannot access BACKUP_SRC_DIR: "' . BACKUP_SRC_DIR . '"!');
+    	die();
+    }
+    closedir($dh);
+
+    //move retained files into destination
+    if ($dh = opendir(BACKUP_RETAIN_DIR)) {
+        while (($file = readdir($dh)) !== false) {
+            if ($file != '.' && $file != '..') {
+    			if (DEBUG_SCRIPT) echo 'Moving retained file: ' . BACKUP_RETAIN_DIR . DS . $file . ' ... ' . BACKUP_DST_DIR . DS . $file . "\n";
+    			move_file(BACKUP_RETAIN_DIR . DS . $file, BACKUP_DST_DIR . DS . $file);
+            }
+        }
+    } else {
+    	trigger_error('Cannot access BACKUP_RETAIN_DIR: "' . BACKUP_RETAIN_DIR . '"!');
+    	die();
+    }
+    closedir($dh);
+
+    //move new files into destination
+    if ($dh = opendir(BACKUP_SRC_DIR)) {
+        while (($file = readdir($dh)) !== false) {
+            if ($file != '.' && $file != '..') {
+    			if (DEBUG_SCRIPT) echo 'Moving new file: ' . BACKUP_SRC_DIR . DS . $file . ' ... ' . BACKUP_DST_DIR . DS . $file . "\n";
+    			move_file(BACKUP_SRC_DIR . DS . $file, BACKUP_DST_DIR . DS . $file);
+            }
+        }
+    } else {
+    	trigger_error('Cannot access BACKUP_SRC_DIR: "' . BACKUP_SRC_DIR . '"!');
+    	die();
+    }
+    closedir($dh);
+
+    remove_dir_recursive(BACKUP_RETAIN_DIR);
+    remove_dir_recursive(BACKUP_SRC_DIR);
+
+
+
+    /**
+     * Removes a file using rm -f
+     * CAREFUL!
+     * @param string $file to remove
+     * @return void
+     */
+    function remove_file($file) {
+    	if (file_exists($file)) {
+	    	if (DEBUG_SCRIPT) echo "Removing file: {$file}...\n";
+			system("rm -f {$file}");
+		}
+    }
+
+
+
+    /**
+     * Moves a file using mv
+     * @param string $src file to move
+     * @param string $dst destination to move to
+     * @return void
+     */
+    function move_file($src, $dst) {
+    	if (file_exists($src)) {
+	    	if (DEBUG_SCRIPT) echo "Moving file: {$src} to {$dst}...\n";
+			system("mv {$src} {$dst}");
+		}
+    }
+
+
+
+    /**
+     * Copies a file using cp
+     * @param string $src file to copy
+     * @param string $dst destination to copy to
+     * @return void
+     */
+    function copy_file($src, $dst) {
+    	if (file_exists($src)) {
+	    	if (DEBUG_SCRIPT) echo "Copying file: {$src} to {$dst}...\n";
+			system("cp {$src} {$dst}");
+		}
+    }
+
+
+
+    /**
+     * Removes directory recursively using rm -rf
+     * CAREFUL!
+     * @param string $dir to remove
+     * @return void
+     */
+    function remove_dir_recursive($dir) {
+    	if (is_dir($dir)) {
+	    	if (DEBUG_SCRIPT) echo "Removing directory recursively: {$dir}...\n";
+		    $cmd = "rm -rf {$dir}";
+		    system($cmd);
+		}
+    }
+
+
+
+    /**
+     * Creates the directory recursively if it doesn't exist
+     * @param string $dir directory to create
+     * @return void
+     */
+    function create_dir_recursive($dir) {
+    	if ($dir == '.' || $dir == '..') {
+    		return;
+    	}
+    	if (!is_dir($dir)) {
+	    	if (DEBUG_SCRIPT) echo "Creating directory recursively: {$dir}...\n";
+    		mkdir($dir, 0755, true);
+    	}
+    }
+
+
+
+    /**
+     * Backs up a MySQL database using mysqldump
+     * @param string $dbname database to backup
+     * @param string $dst_dir destination directory for backup
+     * @param string $dst_file destination filename for backup
+     * @return int error level of executing mysqldump
+     */
+    function backup_mysql_database($dbname, $dst_dir, $dst_file) {
+    	if (DEBUG_SCRIPT) echo "Backing up {$dbname} to: {$dst_dir}/{$dst_file}...\n";
+    	if (DEBUG_SCRIPT) $cmd = "touch \"{$dst_dir}/{$dst_file}\"";
+        else $cmd = "mysqldump -uroot --extended-insert --lock-tables=false --databases {$dbname} | gzip > \"{$dst_dir}/{$dst_file}\"";
+    	$ret_val = 0;
+    	system($cmd, $ret_val);
+    	return $ret_val;
+    }
+?>
