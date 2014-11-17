@@ -13,4 +13,8 @@ yum_package "mc" do
   action :install
 end
 
+yum_package "ncdu" do
+  action :install
+end
+
 rightscale_marker :end
