@@ -14,7 +14,7 @@ directory "/home/vhosts" do
 end
 
 mount "/home/vhosts" do
-  device "softnas:/CMG_OO/OO_SharedVolume/vhosts"
+  device "softnas:/CMGSites/CMGVolume/vhosts"
   fstype "nfs"
   options [
   	"nfsvers=3",
