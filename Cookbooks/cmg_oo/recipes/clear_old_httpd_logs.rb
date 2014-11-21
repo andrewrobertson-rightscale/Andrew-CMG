@@ -5,7 +5,7 @@
 
 rightscale_marker :begin
 
-bash "run_create_db_users" do
+bash "clear_old_logs" do
   user "root"
   cwd "/root"
   code <<-EOH
