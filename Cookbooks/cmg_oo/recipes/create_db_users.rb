@@ -5,6 +5,10 @@
 
 rightscale_marker :begin
 
+yum_package "php" do
+  action :install
+end
+
 template "/root/create_db_users" do
   source "create_db_users.erb"
   owner "root"
