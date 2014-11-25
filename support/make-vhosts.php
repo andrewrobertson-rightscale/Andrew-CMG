@@ -3,78 +3,28 @@
 $cfg = array(
 	'base_vhost_index' 	=> 10,
 	'base_recipe_name'	=> 'vhost_',
-	'port'				=> 8000,
-	'video_port'		=> 80,
-	'www_server_ip'		=> '54.84.247.215',
-	'video_server_ip'	=> '54.208.74.249'
+	'port'				=> 8000
 );
 
 $vhost_index = $cfg['base_vhost_index'];
 
 $subdomains = array(
-	'' 			=> '/home/vhosts/@@site@@/httpdocs',		//handles base domain vhost
-	'www'		=> '/home/vhosts/@@site@@/httpdocs',		//handles www subdomain vhost
-	'videos'	=> '/home/vhosts/videos/@@site@@/httpdocs'	//handles videos subdomain vhost
+	'' 			=> '/home/vhosts/@@site@@',		//handles base domain vhost
+	'www'		=> '/home/vhosts/@@site@@'
 );
 
 $sites = array(
-	'360tuna.com',
-	'airsoftsociety.com',
-	'arkansashunting.net',
-	'beekeepingforum.com',
-	'beekeepingforums.com',
-	'bersaforum.com',
-	'bersaforums.com',
-	'caracalforum.com',
-	'caracalforums.com',
-	'catfish1.com',
-	'cattleforum.com',
-	'cattleforums.com',
-	'chickenforum.com',
-	'chickenforums.com',
-	'cztalk.com',
-	'dairygoatinfo.com',
-	'firearmstalk.com',
-	'georgiahunting.org',
-	'georgiapacking.org',
-	'glockforum.com',
-	'glockforums.com',
-	'hipointfirearmsforums.com',
-	'hipointfirearmsforum.com',
-	'homesteadingtoday.com',
-	'marlinforum.com',
-	'marlinforums.com',
-	'midwest-horse.com',
-	'missouriwhitetails.com',
-	'observedtrials.net',
-	'ohiowaterfowlerforum.com',
-	'ohiowaterfowlerforums.com',
-	'paracordforum.com',
-	'paracordforums.com',
-	'pigforum.com',
-	'pigforums.com',
-	'preparedsociety.com',
-	'rabbitdogs.net',
-	'rugertalk.com',
-	'springfieldforum.com',
-	'springfieldforums.com',
-	'steyrclub.com',
-	'thegoatspot.net',
-	'thektog.org',
-	'theslingshotforum.com',
-	'theslingshotforums.com',
-	'tractorforum.com',
-	'tractorforums.com',
-	'twospoke.com',
-	'velospace.org',
-	'xdforum.com',
-	'xdforums.com'
+	'indianasportsman.com',
+	'hoosierhunting.net',
+	'indianahuntingforum.com',
+	'indianamasteranglers.com',
+	'indianaoutdoorsman.com',
 );
 
 
 $recipe_template = <<< EOF
 #
-# Cookbook Name:: cmg_groupbuilders
+# Cookbook Name:: cmg_oo
 # Recipe:: @@recipe_name@@
 #
 
@@ -142,7 +92,7 @@ rightscale_marker :end
 EOF;
 
 $metadata_template = <<< EOF
-recipe "cmg_groupbuilders::@@recipe_name@@", "Sets up the @@vhost_domain_name@@ vhost."
+recipe "cmg_oo::@@recipe_name@@", "Sets up the @@vhost_domain_name@@ vhost."
 EOF;
 
 for ($i=0; $i < count($sites); $i++) {
@@ -150,7 +100,6 @@ for ($i=0; $i < count($sites); $i++) {
 	//add subdomains
 	foreach($subdomains as $subdomain => $docroot) {
 		$docroot = str_replace('@@site@@', $site_name, $docroot);
-		$port = ($subdomain == 'videos') ? $cfg['video_port'] : $cfg['port'];
 		if (!empty($subdomain)) {
 			$site = "{$subdomain}.{$site_name}";
 		}
@@ -176,8 +125,6 @@ for ($i=0; $i < count($sites); $i++) {
 		$metadata_tmp = str_replace($find, $replace, $metadata_template);
 		create_file("{$replace[0]}.rb", $recipe_tmp);
 		append_file("metadata.rb", $metadata_tmp);
-		$host_ip = ($subdomain == 'videos') ? $cfg['video_server_ip'] : $cfg['www_server_ip'];
-		append_file("hosts", "{$host_ip} {$site}");
 	}
 	append_file("metadata.rb", "");
 	$vhost_index++;
