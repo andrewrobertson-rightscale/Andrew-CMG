@@ -58,8 +58,10 @@ link "/etc/httpd/sites-available/10-www.indianasportsman.com" do
     to "/etc/httpd/sites-enabled/10-www.indianasportsman.com"
 end
 
-service "apache2"
-  action :restart
+bash "restart_httpd" do
+  code <<-EOF
+  	service httpd restart
+  EOF
 end
 
 rightscale_marker :end
