@@ -24,24 +24,20 @@ $sites = array(
 $recipe_template = <<< EOF
 rightscale_marker :begin
 
-# Adds php port to list of ports for webserver to listen on
-# See cookbooks/app/definitions/app_add_listen_port.rb for the "app_add_listen_port" definition.
-app_add_listen_port @@port@@
-
 directory "@@docroot@@" do
-    owner "rightscale"
-    group "apache"
-    mode 00755
-    recursive true
-    action :create
+	owner "rightscale"
+	group "apache"
+	mode 00755
+	recursive true
+	action :create
 end
 
 template "/etc/httpd/sites-available/@@vhost_filename@@" do
-  source "@@vhost_conf_file@@"
-  owner "root"
-  group "root"
-  mode "0644"
-  action :create
+	source "@@vhost_conf_file@@"
+	owner "root"
+	group "root"
+	mode "0644"
+	action :create
 end
 
 link "/etc/httpd/sites-available/@@vhost_filename@@" do
@@ -49,9 +45,9 @@ link "/etc/httpd/sites-available/@@vhost_filename@@" do
 end
 
 bash "restart_httpd" do
-  code <<-EOF
-  	service httpd restart
-  EOF
+	code <<-EOF
+		service httpd restart
+	EOF
 end
 
 rightscale_marker :end
@@ -59,45 +55,44 @@ EOF;
 
 $conf_template = <<< EOF
 <VirtualHost *:@@port@@>
-  ServerName @@vhost_domain_name@@
-  ServerAlias @@vhost_aliases@@
-  DocumentRoot @@docroot@@
-  <DirectoryMatch  /\.git/|/\.svn/ >
-    Deny from all
-  </DirectoryMatch>
+	ServerName @@vhost_domain_name@@
+	ServerAlias @@vhost_aliases@@
+	DocumentRoot @@docroot@@
+	<DirectoryMatch  /\.git/|/\.svn/ >
+		Deny from all
+	</DirectoryMatch>
 
-  <Directory @@docroot@@>
-    Options FollowSymLinks
-    AllowOverride All
-    Order allow,deny
-    Allow from all
-  </Directory>
+	<Directory @@docroot@@>
+		Options FollowSymLinks
+		AllowOverride All
+		Order allow,deny
+		Allow from all
+	</Directory>
 
-  RewriteEngine On
-  # Uncomment for rewrite debugging
-  #RewriteLog /var/log/httpd/http_rewrite_log
-  #RewriteLogLevel 9
+	RewriteEngine On
+	# Uncomment for rewrite debugging
+	#RewriteLog /var/log/httpd/http_rewrite_log
+	#RewriteLogLevel 9
 
-  # Include Rewrite rules from server config for maintenance mode.
-  # Rewrite rules are not inherited in VirtualHost Directive, so must
-  # explicitly include it here.
-  Include conf.d/maintenance.conf
+	# Include Rewrite rules from server config for maintenance mode.
+	# Rewrite rules are not inherited in VirtualHost Directive, so must
+	# explicitly include it here.
+	Include conf.d/maintenance.conf
 
-  # Enable status page for monitoring purposes
-  RewriteCond %{REMOTE_ADDR} ^(127.0.0.1)
-  RewriteRule ^(/server-status) $1 [H=server-status,L]
+	# Enable status page for monitoring purposes
+	RewriteCond %{REMOTE_ADDR} ^(127.0.0.1)
+	RewriteRule ^(/server-status) $1 [H=server-status,L]
 
-  # Setup the logs in the appropriate directory
-  CustomLog /var/log/httpd/access_log combined
-  ErrorLog  /var/log/httpd/error_log
-  LogLevel warn
+	# Setup the logs in the appropriate directory
+	CustomLog /var/log/httpd/access_log combined
+	ErrorLog  /var/log/httpd/error_log
+	LogLevel warn
 
-  # Deflate
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/javascript text/css application/x-javascript
-  BrowserMatch ^Mozilla/4 gzip-only-text/html
-  BrowserMatch ^Mozilla/4\.0[678] no-gzip
-  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
-
+	# Deflate
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/javascript text/css application/x-javascript
+	BrowserMatch ^Mozilla/4 gzip-only-text/html
+	BrowserMatch ^Mozilla/4\.0[678] no-gzip
+	BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 </VirtualHost>
 EOF;
 
@@ -157,8 +152,8 @@ function create_vhost($domain, $aliases = null) {
 		$site,
 		$site,
 		implode(' ', $aliases),
-		"{$replace[0]}.conf.erb"
 	);
+	array_push($replace, "{$replace[0]}.conf.erb");
 	$recipe_tmp = str_replace($find, $replace, $recipe_template);
 	$conf_tmp = str_replace($find, $replace, $conf_template);
 	$metadata_tmp = str_replace($find, $replace, $metadata_template);
