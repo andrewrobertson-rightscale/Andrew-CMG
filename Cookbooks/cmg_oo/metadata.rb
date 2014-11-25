@@ -32,8 +32,7 @@ recipe "cmg_oo::vhost_default", "Sets up the default vhost for lb healthchecks."
 recipe "cmg_oo::sendgrid_default_postfix", "Sets up postfix to use sendgrid."
 recipe "cmg_oo::mod_expires", "Link expires.load into /etc/httpd/modules-enabled."
 recipe "cmg_oo::clear_old_httpd_logs", "Clears old httpd logs."
-recipe "cmg_oo::vhost_indianasportsman_com", "Sets up the indianasportsman.com vhost for apache."
-recipe "cmg_oo::vhost_www_indianasportsman_com", "Sets up the indianasportsman.com vhost for apache."
+recipe "cmg_oo::vhost_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es)."
 
 #bashrc Attributes
 attribute "bashrc/server/name", 

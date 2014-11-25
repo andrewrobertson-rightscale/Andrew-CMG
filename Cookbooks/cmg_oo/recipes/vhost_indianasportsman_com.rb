@@ -37,7 +37,7 @@ rightscale_marker :begin
 
 # Sets up apache PHP virtual host
   project_root = "/home/vhosts/indianasportsman.com"
-  php_port = 8000
+  php_port = 
 
   # Adds php port to list of ports for webserver to listen on
   # See cookbooks/app/definitions/app_add_listen_port.rb for the "app_add_listen_port" definition.
@@ -53,11 +53,12 @@ rightscale_marker :begin
   
   # Configure apache vhost for PHP
   # See https://github.com/rightscale/cookbooks/blob/master/apache2/definitions/web_app.rb for the "web_app" definition.
-  web_app "002-indianasportsman.com" do
+  web_app "10-www.indianasportsman.com" do
     template "app_server.erb"
     docroot project_root
     vhost_port php_port.to_s
-    server_name "indianasportsman.com"
+    server_name "www.indianasportsman.com"
+    server_aliases ["indianasportsman.com","hoosierhunting.net","indianahuntingforum.com","indianamasteranglers.com","indianaoutdoorsman.com","www.hoosierhunting.net","www.indianahuntingforum.com","www.indianamasteranglers.com","www.indianaoutdoorsman.com"]
     allow_override "All"
     apache_log_dir node[:apache][:log_dir]
     cookbook "app_php"
