@@ -82,8 +82,10 @@ link "/etc/httpd/sites-available/@@vhost_filename@@" do
     to "/etc/httpd/sites-enabled/@@vhost_filename@@"
 end
 
-service "apache2"
-  action :restart
+bash "restart_httpd" do
+  code <<-EOF
+  	service httpd restart
+  EOF
 end
 
 rightscale_marker :end
