@@ -21,75 +21,116 @@ $sites = array(
 	)
 );
 
-
 $recipe_template = <<< EOF
-#
-# Cookbook Name:: cmg_oo
-# Recipe:: @@recipe_name@@
-#
-
 rightscale_marker :begin
 
-  service "apache2" do
-  case node[:platform]
-  when "redhat","centos","scientific","fedora","suse"
-    service_name "httpd"
-    # If restarted/reloaded too quickly httpd has a habit of failing.
-    # This may happen with multiple recipes notifying apache to restart - like
-    # during the initial bootstrap.
-    restart_command "/sbin/service httpd restart && sleep 1"
-    reload_command "/sbin/service httpd reload && sleep 1"
-  when "debian","ubuntu"
-    service_name "apache2"
-    restart_command "/usr/sbin/invoke-rc.d apache2 restart && sleep 1"
-    reload_command "/usr/sbin/invoke-rc.d apache2 reload && sleep 1"
-  when "arch"
-    service_name "httpd"
-  end
-  supports value_for_platform(
-    "debian" => { "4.0" => [ :restart, :reload ], "default" => [ :restart, :reload, :status ] },
-    "ubuntu" => { "default" => [ :restart, :reload, :status ] },
-    "redhat" => { "default" => [ :restart, :reload, :status ] },
-    "centos" => { "default" => [ :restart, :reload, :status ] },
-    "scientific" => { "default" => [ :restart, :reload, :status ] },
-    "fedora" => { "default" => [ :restart, :reload, :status ] },
-    "arch" => { "default" => [ :restart, :reload, :status ] },
-    "suse" => { "default" => [ :restart, :reload, :status ] },
-    "default" => { "default" => [:restart, :reload ] }
-  )
-  action :nothing
-  end
+service "apache2" do
+	case node[:platform]
+	when "redhat","centos","scientific","fedora","suse"
+		service_name "httpd"
+		# If restarted/reloaded too quickly httpd has a habit of failing.
+		# This may happen with multiple recipes notifying apache to restart - like
+		# during the initial bootstrap.
+		restart_command "/sbin/service httpd restart && sleep 1"
+		reload_command "/sbin/service httpd reload && sleep 1"
+	when "debian","ubuntu"
+		service_name "apache2"
+		restart_command "/usr/sbin/invoke-rc.d apache2 restart && sleep 1"
+		reload_command "/usr/sbin/invoke-rc.d apache2 reload && sleep 1"
+	when "arch"
+		service_name "httpd"
+	end
+	supports value_for_platform(
+		"debian" => { "4.0" => [ :restart, :reload ], "default" => [ :restart, :reload, :status ] },
+		"ubuntu" => { "default" => [ :restart, :reload, :status ] },
+		"redhat" => { "default" => [ :restart, :reload, :status ] },
+		"centos" => { "default" => [ :restart, :reload, :status ] },
+		"scientific" => { "default" => [ :restart, :reload, :status ] },
+		"fedora" => { "default" => [ :restart, :reload, :status ] },
+		"arch" => { "default" => [ :restart, :reload, :status ] },
+		"suse" => { "default" => [ :restart, :reload, :status ] },
+		"default" => { "default" => [:restart, :reload ] }
+	)
+	action :nothing
+end
 
 # Sets up apache PHP virtual host
-  project_root = "@@docroot@@"
-  php_port = @@port@@
+project_root = "@@docroot@@"
+php_port = @@port@@
 
-  # Adds php port to list of ports for webserver to listen on
-  # See cookbooks/app/definitions/app_add_listen_port.rb for the "app_add_listen_port" definition.
-  app_add_listen_port php_port
-  
-  directory "@@docroot@@" do
+# Adds php port to list of ports for webserver to listen on
+# See cookbooks/app/definitions/app_add_listen_port.rb for the "app_add_listen_port" definition.
+app_add_listen_port php_port
+
+directory "@@docroot@@" do
     owner "rightscale"
     group "apache"
     mode 00755
     recursive true
     action :create
-  end
-  
-  # Configure apache vhost for PHP
-  # See https://github.com/rightscale/cookbooks/blob/master/apache2/definitions/web_app.rb for the "web_app" definition.
-  web_app "@@vhost_filename@@" do
-    template "app_server.erb"
-    docroot project_root
-    vhost_port php_port.to_s
-    server_name "@@vhost_domain_name@@"
-    @@vhost_aliases@@
-    allow_override "All"
-    apache_log_dir node[:apache][:log_dir]
-    cookbook "app_php"
-  end
+end
+
+template "/etc/httpd/sites-available/@@vhost_filename@@" do
+  source "@@vhost_conf_file@@"
+  owner "root"
+  group "root"
+  mode "0644"
+  action :create
+end
+
+link "/etc/httpd/sites-available/@@vhost_filename@@" do
+    to "/etc/httpd/sites-enabled/@@vhost_filename@@"
+end
+
+service "apache2"
+  action :restart
+end
 
 rightscale_marker :end
+EOF;
+
+$conf_template = <<< EOF
+<VirtualHost *:@@port@@>
+  ServerName @@vhost_domain_name@@
+  ServerAlias @@vhost_aliases@@
+  DocumentRoot @@docroot@@
+  <DirectoryMatch  /\.git/|/\.svn/ >
+    Deny from all
+  </DirectoryMatch>
+
+  <Directory @@docroot@@>
+    Options FollowSymLinks
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  RewriteEngine On
+  # Uncomment for rewrite debugging
+  #RewriteLog /var/log/httpd/http_rewrite_log
+  #RewriteLogLevel 9
+
+  # Include Rewrite rules from server config for maintenance mode.
+  # Rewrite rules are not inherited in VirtualHost Directive, so must
+  # explicitly include it here.
+  Include conf.d/maintenance.conf
+
+  # Enable status page for monitoring purposes
+  RewriteCond %{REMOTE_ADDR} ^(127.0.0.1)
+  RewriteRule ^(/server-status) $1 [H=server-status,L]
+
+  # Setup the logs in the appropriate directory
+  CustomLog /var/log/httpd/access_log combined
+  ErrorLog  /var/log/httpd/error_log
+  LogLevel warn
+
+  # Deflate
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/javascript text/css application/x-javascript
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+</VirtualHost>
 EOF;
 
 $metadata_template = <<< EOF
@@ -110,6 +151,7 @@ function create_vhost($domain, $aliases = null) {
 		$vhost_index, 
 		$cfg, 
 		$recipe_template,
+		$conf_template,
 		$metadata_template;
 
 	$site_name = $site = $domain;
@@ -136,7 +178,8 @@ function create_vhost($domain, $aliases = null) {
 		'@@vhost_filename@@',
 		'@@vhost_domain_name@@',
 		'@@site@@',
-		'@@vhost_aliases@@'
+		'@@vhost_aliases@@',
+		'@@vhost_conf_file@@'
 	);
 	$replace = array(
 		'vhost_' . $sitename_underscore,
@@ -145,11 +188,14 @@ function create_vhost($domain, $aliases = null) {
 		"{$vhost_index}-{$site}",
 		$site,
 		$site,
-		"server_aliases " . json_encode($aliases)
+		implode(' ', $aliases),
+		"{$replace[0]}.conf.erb"
 	);
 	$recipe_tmp = str_replace($find, $replace, $recipe_template);
+	$conf_tmp = str_replace($find, $replace, $conf_template);
 	$metadata_tmp = str_replace($find, $replace, $metadata_template);
 	create_file("{$replace[0]}.rb", $recipe_tmp);
+	create_file("{$replace[0]}.conf.erb", $conf_tmp);
 	append_file("metadata.rb", $metadata_tmp);
 	append_file("metadata.rb", "");
 	$vhost_index++;
