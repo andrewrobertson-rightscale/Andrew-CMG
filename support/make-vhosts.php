@@ -32,7 +32,7 @@ directory "@@docroot@@" do
 	action :create
 end
 
-template "/etc/httpd/sites-available/@@vhost_filename@@" do
+template "/etc/httpd/sites-available/@@vhost_filename@@.conf" do
 	source "@@vhost_conf_file@@"
 	owner "root"
 	group "root"
@@ -40,8 +40,8 @@ template "/etc/httpd/sites-available/@@vhost_filename@@" do
 	action :create
 end
 
-link "/etc/httpd/sites-available/@@vhost_filename@@" do
-    to "/etc/httpd/sites-enabled/@@vhost_filename@@"
+link "/etc/httpd/sites-enabled/@@vhost_filename@@.conf" do
+    to "/etc/httpd/sites-available/@@vhost_filename@@.conf"
 end
 
 bash "restart_httpd" do

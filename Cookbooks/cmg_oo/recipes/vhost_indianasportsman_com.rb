@@ -8,7 +8,7 @@ directory "/home/vhosts/indianasportsman.com" do
 	action :create
 end
 
-template "/etc/httpd/sites-available/10-www.indianasportsman.com" do
+template "/etc/httpd/sites-available/10-www.indianasportsman.com.conf" do
 	source "vhost_indianasportsman_com.conf.erb"
 	owner "root"
 	group "root"
@@ -16,8 +16,8 @@ template "/etc/httpd/sites-available/10-www.indianasportsman.com" do
 	action :create
 end
 
-link "/etc/httpd/sites-available/10-www.indianasportsman.com" do
-    to "/etc/httpd/sites-enabled/10-www.indianasportsman.com"
+link "/etc/httpd/sites-enabled/10-www.indianasportsman.com.conf" do
+    to "/etc/httpd/sites-available/10-www.indianasportsman.com.conf"
 end
 
 bash "restart_httpd" do
