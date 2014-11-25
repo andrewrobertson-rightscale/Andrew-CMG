@@ -37,7 +37,7 @@ rightscale_marker :begin
 
 # Sets up apache PHP virtual host
   project_root = "/home/vhosts/indianasportsman.com"
-  php_port = 
+  php_port = 8000
 
   # Adds php port to list of ports for webserver to listen on
   # See cookbooks/app/definitions/app_add_listen_port.rb for the "app_add_listen_port" definition.

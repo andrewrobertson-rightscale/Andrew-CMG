@@ -141,7 +141,7 @@ function create_vhost($domain, $aliases = null) {
 	$replace = array(
 		'vhost_' . $sitename_underscore,
 		$docroot,
-		$port,
+		$cfg['port'],
 		"{$vhost_index}-{$site}",
 		$site,
 		$site,
