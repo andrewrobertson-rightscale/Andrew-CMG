@@ -9,16 +9,16 @@ $cfg = array(
 $vhost_index = $cfg['base_vhost_index'];
 
 $subdomains = array(
-	'' 			=> '/home/vhosts/@@site@@',		//handles base domain vhost
-	'www'		=> '/home/vhosts/@@site@@'
+	'www' => '/home/vhosts/@@site@@'
 );
 
 $sites = array(
-	'indianasportsman.com',
-	'hoosierhunting.net',
-	'indianahuntingforum.com',
-	'indianamasteranglers.com',
-	'indianaoutdoorsman.com',
+	'indianasportsman.com' => array(
+		'hoosierhunting.net',
+		'indianahuntingforum.com',
+		'indianamasteranglers.com',
+		'indianaoutdoorsman.com'
+	)
 );
 
 
@@ -83,6 +83,7 @@ rightscale_marker :begin
     docroot project_root
     vhost_port php_port.to_s
     server_name "@@vhost_domain_name@@"
+    @@vhost_aliases@@
     allow_override "All"
     apache_log_dir node[:apache][:log_dir]
     cookbook "app_php"
@@ -92,40 +93,64 @@ rightscale_marker :end
 EOF;
 
 $metadata_template = <<< EOF
-recipe "cmg_oo::@@recipe_name@@", "Sets up the @@vhost_domain_name@@ vhost."
+recipe "cmg_oo::@@recipe_name@@", "Sets up the @@vhost_domain_name@@ vhost(s) and alias(es)."
 EOF;
 
-for ($i=0; $i < count($sites); $i++) {
-	$site_name = $site = $sites[$i];
+foreach($sites as $site => $aliases) {
+	if (is_array($sites[$site])) {
+		create_vhost($site, $aliases);
+	} else {
+		create_vhost($site);
+	}
+}
+
+function create_vhost($domain, $aliases = null) {
+	global 
+		$subdomains, 
+		$vhost_index, 
+		$cfg, 
+		$recipe_template,
+		$metadata_template;
+
+	$site_name = $site = $domain;
+	
 	//add subdomains
 	foreach($subdomains as $subdomain => $docroot) {
 		$docroot = str_replace('@@site@@', $site_name, $docroot);
 		if (!empty($subdomain)) {
 			$site = "{$subdomain}.{$site_name}";
 		}
-		echo "{$site}\n";
-		$sitename_underscore = str_replace('.', '_', $site);
-		$find = array(
-			'@@recipe_name@@',
-			'@@docroot@@',
-			'@@port@@',
-			'@@vhost_filename@@',
-			'@@vhost_domain_name@@',
-			'@@site@@'
-		);
-		$replace = array(
-			'vhost_' . $sitename_underscore,
-			$docroot,
-			$port,
-			"{$vhost_index}-{$site}",
-			$site,
-			$site
-		);
-		$recipe_tmp = str_replace($find, $replace, $recipe_template);
-		$metadata_tmp = str_replace($find, $replace, $metadata_template);
-		create_file("{$replace[0]}.rb", $recipe_tmp);
-		append_file("metadata.rb", $metadata_tmp);
+		if (!is_null($aliases)) {
+			foreach($aliases as $idx => $alias) {
+				array_push($aliases, "{$subdomain}.{$alias}");
+			}
+		}
 	}
+	array_unshift($aliases, $domain);
+	echo "{$domain}\n";
+	$sitename_underscore = str_replace('.', '_', $domain);
+	$find = array(
+		'@@recipe_name@@',
+		'@@docroot@@',
+		'@@port@@',
+		'@@vhost_filename@@',
+		'@@vhost_domain_name@@',
+		'@@site@@',
+		'@@vhost_aliases@@'
+	);
+	$replace = array(
+		'vhost_' . $sitename_underscore,
+		$docroot,
+		$port,
+		"{$vhost_index}-{$site}",
+		$site,
+		$site,
+		"server_aliases " . json_encode($aliases)
+	);
+	$recipe_tmp = str_replace($find, $replace, $recipe_template);
+	$metadata_tmp = str_replace($find, $replace, $metadata_template);
+	create_file("{$replace[0]}.rb", $recipe_tmp);
+	append_file("metadata.rb", $metadata_tmp);
 	append_file("metadata.rb", "");
 	$vhost_index++;
 }
