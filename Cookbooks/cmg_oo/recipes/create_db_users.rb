@@ -9,6 +9,10 @@ yum_package "php" do
   action :install
 end
 
+file "/root/create_db_users" do
+  action :delete
+end
+
 template "/root/create_db_users" do
   source "create_db_users.erb"
   owner "root"
