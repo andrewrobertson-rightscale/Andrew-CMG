@@ -1,0 +1,11 @@
+<?php
+if (array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER)) {
+    $_SERVER['HTTPS'] = ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') ? 'on' : 'off';
+}
+if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
+    $_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
+}
+//use first ip passed if many used
+$tmp = explode(',', $_SERVER['REMOTE_ADDR']);
+$_SERVER['REMOTE_ADDR'] = $tmp[0];
+?>
