@@ -33,7 +33,13 @@ recipe "cmg_oo::sendgrid_default_postfix", "Sets up postfix to use sendgrid."
 recipe "cmg_oo::mod_expires", "Link expires.load into /etc/httpd/modules-enabled."
 recipe "cmg_oo::clear_old_httpd_logs", "Clears old httpd logs."
 recipe "cmg_oo::global_php", "Creates _GLOBAL.php in /home/vhosts."
-recipe "cmg_oo::vhost_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es)."
+recipe "cmg_oo::vhost_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_redirect_hoosierhunting_net_to_www_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_redirect_indianahuntingforum_com_to_www_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_redirect_indianamasteranglers_com_to_www_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_redirect_indianaoutdoorsman_com_to_www_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es) (if applicable)."
+
+
 
 #bashrc Attributes
 attribute "bashrc/server/name", 
