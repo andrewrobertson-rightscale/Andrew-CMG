@@ -83,8 +83,23 @@ $sites = array(
 			'indianamasteranglers.com',
 			'indianaoutdoorsman.com'
 		)
+	),
+	'mainehuntingforums.com',
+	'arizonahuntingtoday.com',
+	'wisconsinoutdoorsman.com' => array(
+		'aliases' => array(
+			'wisconsintroutfishing.com',
+			'wisconsintroutstreams.com'
+		)
+	),
+	'theboxotruth.com' => array(
+		'aliases' => array(
+			'tbotoh.com'
+		)
 	)
 );
+
+
 
 /**
  * Recipe template for chef recipe which:
