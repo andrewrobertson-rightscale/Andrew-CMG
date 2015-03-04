@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/xenforo-addons" do
+directory "/home/vhosts/xenforo-addons_carbonmedia.net" do
 	owner "rightscale"
 	group "apache"
 	mode 00755
@@ -8,15 +8,7 @@ directory "/home/vhosts/xenforo-addons" do
 	action :create
 end
 
-#bash "create passwd" do
-#  user "root"
-#  cwd "/root"
-#  code <<-EOH
-#	cd /home/vhosts && htpasswd -bc .passwd cmgsysop 533_EMM_6eef7W
-#  EOH
-#end
-
-template "/etc/httpd/sites-available/99-xenforo-addons.carbonmedia.net.conf" do
+template "/etc/httpd/sites-available/19-www.xenforo-addons_carbonmedia.net.conf" do
 	source "vhost_xenforo-addons_carbonmedia_net.conf.erb"
 	owner "root"
 	group "root"
@@ -24,8 +16,8 @@ template "/etc/httpd/sites-available/99-xenforo-addons.carbonmedia.net.conf" do
 	action :create
 end
 
-link "/etc/httpd/sites-enabled/99-xenforo-addons.carbonmedia.net.conf" do
-    to "/etc/httpd/sites-available/99-xenforo-addons.carbonmedia.net.conf"
+link "/etc/httpd/sites-enabled/19-www.xenforo-addons_carbonmedia.net.conf" do
+    to "/etc/httpd/sites-available/19-www.xenforo-addons_carbonmedia.net.conf"
 end
 
 bash "restart_httpd" do

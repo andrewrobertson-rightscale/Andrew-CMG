@@ -1,19 +1,16 @@
-<VirtualHost *:80>
-	ServerName xenforo-addons.carbonmedia.net
-	DocumentRoot /home/vhosts/xenforo-addons
+<VirtualHost *:8000>
+	ServerName www.xenforo-addons_carbonmedia.net
+	ServerAlias xenforo-addons_carbonmedia.net
+	DocumentRoot /home/vhosts/xenforo-addons_carbonmedia.net
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/xenforo-addons>
-		Options FollowSymLinks +Indexes
+	<Directory /home/vhosts/xenforo-addons_carbonmedia.net>
+		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny
 		Allow from all
-		AuthUserFile /home/vhosts/.passwd
-		AuthType Basic
-		AuthName "Authorised Users Only"
-		Require valid-user
 	</Directory>
 
 	RewriteEngine On
