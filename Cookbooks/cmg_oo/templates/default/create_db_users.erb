@@ -27,7 +27,8 @@ create database if not exists $dbname; create user '$username'@'%' identified by
 EOF;
             $cmd = "mysql --execute \"{$sql}\"";
             echo "Running: {$cmd}\n";
-            system($cmd);
+
+            //system($cmd);
         }
     }
 ?>
