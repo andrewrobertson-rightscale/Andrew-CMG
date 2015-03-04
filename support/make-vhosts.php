@@ -85,7 +85,7 @@ $sites = array(
 		)
 	),
 	'mainehuntingforums.com',
-	'arizonahuntingtoday.com',
+	'arizonahuntingforums.com',
 	'wisconsinoutdoorsman.com' => array(
 		'aliases' => array(
 			'wisconsintroutfishing.com',
@@ -96,7 +96,8 @@ $sites = array(
 		'aliases' => array(
 			'tbotoh.com'
 		)
-	)
+	),
+	'xenforo-addons_carbonmedia.net'
 );
 
 
