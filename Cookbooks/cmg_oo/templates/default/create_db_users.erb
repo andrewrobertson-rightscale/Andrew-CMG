@@ -25,13 +25,17 @@ EOF;
             'password' => trim($password)
         );
         if ((bool) $account['enabled']) {
-
-$sql = <<<EOF
-create database if not exists $dbname; create user '$username'@'%' identified by '$password'; grant ALL on $dbname.* to '$username'@'%' identified by '$password'; flush privileges;
-EOF;
-            $cmd = "mysql --execute \"{$sql}\"";
-            echo "Running: {$cmd}\n";
-            system($cmd);
+            $sql = array(
+                "create database if not exists {$dbname};",
+                "create user '{$username}'@'%' identified by '{$password}';",
+                "grant ALL on {$dbname}.* to '{$username}'@'%' identified by '{$password}';",
+                "flush privileges;"
+            );
+            foreach($sql as $statement) {
+                $cmd = "mysql --execute \"{$statement}\"";
+                echo "Running: {$cmd}\n";
+                //system($cmd);
+            }
         }
     }
 ?>
