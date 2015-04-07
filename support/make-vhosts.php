@@ -97,7 +97,18 @@ $sites = array(
 			'tbotoh.com'
 		)
 	),
-	'xenforo-addons_carbonmedia.net'
+	'xenforo-addons_carbonmedia.net',
+	'ohiogamefishing.com',
+	'ohiosportsman.com' => array(
+		'aliases' => array(
+			'eriesportfishing.com',
+			'icefishingohio.com',
+			'ohiofishingforum.com',
+			'ohiofishingtalk.com',
+			'ohiohunter.com',
+			'ohiosportsman.net'
+		)
+	)	
 );
 
 

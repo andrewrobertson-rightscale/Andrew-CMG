@@ -43,6 +43,8 @@ recipe "cmg_oo::vhost_arizonahuntingforums_com", "Sets up the www.arizonahunting
 recipe "cmg_oo::vhost_wisconsinoutdoorsman_com", "Sets up the www.wisconsinoutdoorsman.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_theboxotruth_com", "Sets up the www.theboxotruth.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_xenforo-addons_carbonmedia_net", "Sets up the www.xenforo-addons_carbonmedia.net vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_ohiogamefishing_com", "Sets up the www.ohiogamefishing.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_ohiosportsman_com", "Sets up the www.ohiosportsman.com vhost(s) and alias(es) (if applicable)."
 
 #bashrc Attributes
 attribute "bashrc/server/name", 
