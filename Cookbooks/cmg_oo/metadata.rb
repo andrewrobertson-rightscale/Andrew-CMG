@@ -45,6 +45,8 @@ recipe "cmg_oo::vhost_theboxotruth_com", "Sets up the www.theboxotruth.com vhost
 recipe "cmg_oo::vhost_xenforo-addons_carbonmedia_net", "Sets up the www.xenforo-addons_carbonmedia.net vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_ohiogamefishing_com", "Sets up the www.ohiogamefishing.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_ohiosportsman_com", "Sets up the www.ohiosportsman.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::set_newrelic_hostname", "Sets the New Relic Hostname in /etc/newrelic/nrsysmond.cfg."
+recipe "cmg_oo::remove_newrelic", "Remove New Relic from server."
 
 #bashrc Attributes
 attribute "bashrc/server/name", 
@@ -58,3 +60,19 @@ attribute "bashrc/server/deployment",
   :description => "Use ENV -> RS_DEPLOYMENT_NAME",
   :required => "required",
   :recipes => [ "cmg_oo::bashrc" ]
+
+#global Attributes
+attribute "newrelic/server_monitoring/deployment_prefix",
+  :display_name => "New Relic Deployment Prefix (end in :)",
+  :description => "e.g. CTV:",
+  :required => "required",
+  :recipes => [ 
+    "cmg_oo::set_newrelic_hostname"
+  ]
+attribute "newrelic/server_monitoring/hostname",
+  :display_name => "New Relic Hostname",
+  :description => "e.g. 5-arr-CarbonTV-app #191",
+  :required => "required",
+  :recipes => [ 
+    "cmg_oo::set_newrelic_hostname"
+  ]
