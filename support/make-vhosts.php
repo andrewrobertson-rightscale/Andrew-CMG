@@ -109,7 +109,9 @@ $sites = array(
 			'ohiosportsman.net'
 		)
 	),
-	'glocktalk.com'
+	'glocktalk.com',
+	'boiseriders.net',
+	'pnwriders.com'
 );
 
 

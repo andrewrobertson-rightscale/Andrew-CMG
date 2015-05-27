@@ -34,6 +34,8 @@ recipe "cmg_oo::mod_expires", "Link expires.load into /etc/httpd/modules-enabled
 recipe "cmg_oo::mod_rewrite", "Link rewrite.load into /etc/httpd/modules-enabled."
 recipe "cmg_oo::clear_old_httpd_logs", "Clears old httpd logs."
 recipe "cmg_oo::global_php", "Creates _GLOBAL.php in /home/vhosts."
+recipe "cmg_oo::set_newrelic_hostname", "Sets the New Relic Hostname in /etc/newrelic/nrsysmond.cfg."
+recipe "cmg_oo::remove_newrelic", "Remove New Relic from server."
 recipe "cmg_oo::vhost_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_redirect_hoosierhunting_net_to_www_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_redirect_indianahuntingforum_com_to_www_indianasportsman_com", "Sets up the www.indianasportsman.com vhost(s) and alias(es) (if applicable)."
@@ -47,8 +49,8 @@ recipe "cmg_oo::vhost_xenforo-addons_carbonmedia_net", "Sets up the www.xenforo-
 recipe "cmg_oo::vhost_ohiogamefishing_com", "Sets up the www.ohiogamefishing.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_ohiosportsman_com", "Sets up the www.ohiosportsman.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_glocktalk_com", "Sets up the www.glocktalk.com vhost(s) and alias(es) (if applicable)."
-recipe "cmg_oo::set_newrelic_hostname", "Sets the New Relic Hostname in /etc/newrelic/nrsysmond.cfg."
-recipe "cmg_oo::remove_newrelic", "Remove New Relic from server."
+recipe "cmg_oo::vhost_boiseriders_net", "Sets up the www.boiseriders.net vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_pnwriders_com", "Sets up the www.pnwriders.com vhost(s) and alias(es) (if applicable)."
 
 #bashrc Attributes
 attribute "bashrc/server/name", 
