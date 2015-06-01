@@ -111,7 +111,8 @@ $sites = array(
 	),
 	'glocktalk.com',
 	'boiseriders.net',
-	'pnwriders.com'
+	'pnwriders.com',
+	'core.carbonmedia.net'
 );
 
 

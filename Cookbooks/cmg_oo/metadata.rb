@@ -51,6 +51,7 @@ recipe "cmg_oo::vhost_ohiosportsman_com", "Sets up the www.ohiosportsman.com vho
 recipe "cmg_oo::vhost_glocktalk_com", "Sets up the www.glocktalk.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_boiseriders_net", "Sets up the www.boiseriders.net vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_pnwriders_com", "Sets up the www.pnwriders.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_core_carbonmedia_net", "Sets up the core.carbonmedia.net vhost(s) and alias(es) (if applicable)."
 
 #bashrc Attributes
 attribute "bashrc/server/name", 
