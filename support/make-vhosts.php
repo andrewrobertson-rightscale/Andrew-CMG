@@ -113,7 +113,8 @@ $sites = array(
 	'boiseriders.net',
 	'pnwriders.com',
 	'core.carbonmedia.net',
-	'michigan-sportsman.com'
+	'michigan-sportsman.com',
+	'veggiegardener.com'
 );
 
 

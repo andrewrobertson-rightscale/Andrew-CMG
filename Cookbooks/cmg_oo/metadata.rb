@@ -53,6 +53,7 @@ recipe "cmg_oo::vhost_boiseriders_net", "Sets up the www.boiseriders.net vhost(s
 recipe "cmg_oo::vhost_pnwriders_com", "Sets up the www.pnwriders.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_core_carbonmedia_net", "Sets up the core.carbonmedia.net vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_michigan-sportsman_com", "Sets up the www.michigan-sportsman.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_veggiegardener_com", "Sets up the www.veggiegardener.com vhost(s) and alias(es) (if applicable)."
 
 #bashrc Attributes
 attribute "bashrc/server/name", 
