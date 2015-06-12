@@ -114,7 +114,8 @@ $sites = array(
 	'pnwriders.com',
 	'core.carbonmedia.net',
 	'michigan-sportsman.com',
-	'veggiegardener.com'
+	'veggiegardener.com',
+	'thefirearmsforum.com'
 );
 
 

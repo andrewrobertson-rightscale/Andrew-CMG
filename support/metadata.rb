@@ -34,3 +34,5 @@ recipe "cmg_oo::vhost_michigan-sportsman_com", "Sets up the www.michigan-sportsm
 
 recipe "cmg_oo::vhost_veggiegardener_com", "Sets up the www.veggiegardener.com vhost(s) and alias(es) (if applicable)."
 
+recipe "cmg_oo::vhost_thefirearmsforum_com", "Sets up the www.thefirearmsforum.com vhost(s) and alias(es) (if applicable)."
+
