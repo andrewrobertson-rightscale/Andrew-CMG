@@ -15,7 +15,7 @@ template "/etc/php.ini" do
             :upload_max_filesize => "256M",
             :max_input_time => "7200",
             :max_execution_time => "600",
-            :memory_limit => "128M",
+            :memory_limit => "256M",
             :mysql_connect_timeout => "15",
             :post_max_size => "256M",
             :error_reporting => "E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_WARNING",
