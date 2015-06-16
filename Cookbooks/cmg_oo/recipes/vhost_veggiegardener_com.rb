@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/veggiegardener.com" do
+directory "/home/vhosts/core.carbonmedia.net" do
 	owner "rightscale"
 	group "apache"
 	mode 00755
