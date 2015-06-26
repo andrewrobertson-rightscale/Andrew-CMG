@@ -34,21 +34,10 @@ bash "delete_server" do
             -d "filter[host]=#{my_host}" \
             | /root/jq .servers[0].id \
         )
-        echo #{my_host} - #{nr_host}
+        echo #{my_host} - #{nr_host} - $nr_server_id
         curl -X DELETE "https://api.newrelic.com/v2/servers/$nr_server_id.json" \
-             -H 'X-Api-Key:71eceae3fcf2bfc4321bdc9881d65a0b4f9c92052a3334e'
+            -H 'X-Api-Key:71eceae3fcf2bfc4321bdc9881d65a0b4f9c92052a3334e'
     EOH
-end
-
-service ["newrelic-sysmond", "newrelic-daemon"] do
-  action :stop
-end
-
-bash "remove_newrelic" do
-  code <<-EOF
-    yum -y remove newrelic-sysmond
-    yum -y remove newrelic-daemon
-  EOF
 end
 
 rightscale_marker :end
