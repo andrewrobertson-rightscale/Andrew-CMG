@@ -18,7 +18,7 @@ template "/etc/php.d/apc.ini" do
             :ttl => "60",
             :user_ttl => "7200",
             :num_files_hint => "1024",
-            :mmap_file_mask => "/tmp/apc.XXXXXX",
+            :mmap_file_mask => "/dev/zero",
             :enable_cli => "1",
             :rfc1867 => "1"
              )
