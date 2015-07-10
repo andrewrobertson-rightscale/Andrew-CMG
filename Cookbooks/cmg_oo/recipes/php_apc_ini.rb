@@ -14,7 +14,7 @@ template "/etc/php.d/apc.ini" do
             :enabled => "1",
             :optimization => "0",
             :shm_segments => "1",
-            :shm_size => "256M",
+            :shm_size => "512M",
             :ttl => "60",
             :user_ttl => "7200",
             :num_files_hint => "1024",
