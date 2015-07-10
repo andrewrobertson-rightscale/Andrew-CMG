@@ -14,11 +14,11 @@ template "/etc/php.d/apc.ini" do
             :enabled => "1",
             :optimization => "0",
             :shm_segments => "1",
-            :shm_size => "512M",
+            :shm_size => "256M",
             :ttl => "60",
             :user_ttl => "7200",
             :num_files_hint => "1024",
-            :mmap_file_mask => "/dev/zero",
+            :mmap_file_mask => "/tmp/apc.XXXXXX",
             :enable_cli => "1",
             :rfc1867 => "1"
              )
