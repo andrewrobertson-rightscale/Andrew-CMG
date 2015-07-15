@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
-    ServerName www.beginningfarmers.com
-    ServerAlias beginningfarmers.com
+    ServerName www.beginningfarmers.org
+    ServerAlias beginningfarmers.org
     DocumentRoot /home/vhosts/core.carbonmedia.net
     <DirectoryMatch  /\.git/|/\.svn/ >
         Deny from all
     </DirectoryMatch>
 
-    <Directory /home/vhosts/beginningfarmers.com>
+    <Directory /home/vhosts/beginningfarmers.org>
         Options FollowSymLinks
         AllowOverride All
         Order allow,deny
