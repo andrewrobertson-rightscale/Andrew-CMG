@@ -55,15 +55,16 @@ recipe "cmg_oo::vhost_core_carbonmedia_net", "Sets up the core.carbonmedia.net v
 recipe "cmg_oo::vhost_michigan-sportsman_com", "Sets up the www.michigan-sportsman.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_veggiegardener_com", "Sets up the www.veggiegardener.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_thefirearmsforum_com", "Sets up the www.thefirearmsforum.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_beginningfarmers_org", "Sets up the www.beginningfarmers.org vhost(s) and alias(es) (if applicable)."
 
 #bashrc Attributes
-attribute "bashrc/server/name", 
+attribute "bashrc/server/name",
   :display_name => "Server name (for bash prompt)",
   :description => "Use ENV -> RS_SERVER_NAME",
   :required => "required",
   :recipes => [ "cmg_oo::bashrc" ]
 
-attribute "bashrc/server/deployment", 
+attribute "bashrc/server/deployment",
   :display_name => "Deployment name (for bash prompt)",
   :description => "Use ENV -> RS_DEPLOYMENT_NAME",
   :required => "required",
@@ -74,13 +75,13 @@ attribute "newrelic/server_monitoring/deployment_prefix",
   :display_name => "New Relic Deployment Prefix (end in :)",
   :description => "e.g. CTV:",
   :required => "required",
-  :recipes => [ 
+  :recipes => [
     "cmg_oo::set_newrelic_hostname"
   ]
 attribute "newrelic/server_monitoring/hostname",
   :display_name => "New Relic Hostname",
   :description => "e.g. 5-arr-CarbonTV-app #191",
   :required => "required",
-  :recipes => [ 
+  :recipes => [
     "cmg_oo::set_newrelic_hostname"
   ]
