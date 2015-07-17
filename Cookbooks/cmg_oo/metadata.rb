@@ -56,6 +56,7 @@ recipe "cmg_oo::vhost_michigan-sportsman_com", "Sets up the www.michigan-sportsm
 recipe "cmg_oo::vhost_veggiegardener_com", "Sets up the www.veggiegardener.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_thefirearmsforum_com", "Sets up the www.thefirearmsforum.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_beginningfarmers_org", "Sets up the www.beginningfarmers.org vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_microskiff_com", "Sets up the www.microskiff.com vhost(s) and alias(es) (if applicable)."
 
 #bashrc Attributes
 attribute "bashrc/server/name",

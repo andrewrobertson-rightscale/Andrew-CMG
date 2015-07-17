@@ -116,7 +116,8 @@ $sites = array(
     'michigan-sportsman.com',
     'veggiegardener.com',
     'thefirearmsforum.com',
-    'beginningfarmers.org'
+    'beginningfarmers.org',
+    'microskiff.com'
 );
 
 
