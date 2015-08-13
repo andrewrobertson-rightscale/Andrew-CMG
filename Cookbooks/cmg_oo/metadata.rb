@@ -15,6 +15,7 @@ depends "web_apache"
 depends "apache2"
 
 recipe "cmg_oo::etc_hosts", "Sets up /etc/hosts."
+recipe "cmg_oo::httpd_conf", "Sets up /etc/httpd/conf/httpd.conf."
 recipe "cmg_oo::install_nfs_client", "Installs NFS client."
 recipe "cmg_oo::mount_nfs_vhosts", "Mounts /home/vhosts via NFS via SoftNAS NFS export."
 recipe "cmg_oo::bashrc", "Sets up the bash environment."
