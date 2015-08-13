@@ -11,7 +11,8 @@ ServerRoot "/etc/httpd"
 LockFile logs/accept.lock
 
 #
-# PidFile: The file in which the server should record its process # identification number when it starts.
+# PidFile: The file in which the server should record its process
+# identification number when it starts.
 #
 PidFile /var/run/httpd/httpd.pid
 
@@ -21,26 +22,35 @@ PidFile /var/run/httpd/httpd.pid
 Timeout 300
 
 #
-# KeepAlive: Whether or not to allow persistent connections (more than # one request per connection). Set to "Off" to deactivate.
+# KeepAlive: Whether or not to allow persistent connections (more than
+# one request per connection). Set to "Off" to deactivate.
 #
 KeepAlive On
 
 #
-# MaxKeepAliveRequests: The maximum number of requests to allow # during a persistent connection. Set to 0 to allow an unlimited amount.
+# MaxKeepAliveRequests: The maximum number of requests to allow
+# during a persistent connection. Set to 0 to allow an unlimited amount.
 # We recommend you leave this number high, for maximum performance.
 #
 MaxKeepAliveRequests 100
 
 #
-# KeepAliveTimeout: Number of seconds to wait for the next request from the # same client on the same connection.
+# KeepAliveTimeout: Number of seconds to wait for the next request from the
+# same client on the same connection.
 #
 KeepAliveTimeout 5
 
 ##
-## Server-Pool Size Regulation (MPM specific) ## 
+## Server-Pool Size Regulation (MPM specific)
+##
 
 # prefork MPM
-# StartServers: number of server processes to start # MinSpareServers: minimum number of server processes which are kept spare # MaxSpareServers: maximum number of server processes which are kept spare # MaxClients: maximum number of server processes allowed to start # MaxRequestsPerChild: maximum number of requests a server process serves <IfModule mpm_prefork_module>
+# StartServers: number of server processes to start
+# MinSpareServers: minimum number of server processes which are kept spare
+# MaxSpareServers: maximum number of server processes which are kept spare
+# MaxClients: maximum number of server processes allowed to start
+# MaxRequestsPerChild: maximum number of requests a server process serves
+<IfModule mpm_prefork_module>
     StartServers          16
     MinSpareServers       16
     MaxSpareServers       32
@@ -50,7 +60,13 @@ KeepAliveTimeout 5
 </IfModule>
 
 # worker MPM
-# StartServers: initial number of server processes to start # MaxClients: maximum number of simultaneous client connections # MinSpareThreads: minimum number of worker threads which are kept spare # MaxSpareThreads: maximum number of worker threads which are kept spare # ThreadsPerChild: constant number of worker threads in each server process # MaxRequestsPerChild: maximum number of requests a server process serves <IfModule mpm_worker_module>
+# StartServers: initial number of server processes to start
+# MaxClients: maximum number of simultaneous client connections
+# MinSpareThreads: minimum number of worker threads which are kept spare
+# MaxSpareThreads: maximum number of worker threads which are kept spare
+# ThreadsPerChild: constant number of worker threads in each server process
+# MaxRequestsPerChild: maximum number of requests a server process serves
+<IfModule mpm_worker_module>
     StartServers          8
     MaxClients            1024
     MinSpareThreads       64
@@ -64,13 +80,16 @@ User apache
 Group apache
 
 #
-# AccessFileName: The name of the file to look for in each directory # for additional configuration directives.  See also the AllowOverride # directive.
+# AccessFileName: The name of the file to look for in each directory
+# for additional configuration directives.  See also the AllowOverride
+# directive.
 #
 
 AccessFileName .htaccess
 
 #
-# The following lines prevent .htaccess and .htpasswd files from being # viewed by Web clients. 
+# The following lines prevent .htaccess and .htpasswd files from being
+# viewed by Web clients.
 #
 <Files ~ "^\.ht">
     Order allow,deny
@@ -78,26 +97,39 @@ AccessFileName .htaccess
 </Files>
 
 #
-# DefaultType is the default MIME type the server will use for a document # if it cannot otherwise determine one, such as from filename extensions.
-# If your server contains mostly text or HTML documents, "text/plain" is # a good value.  If most of your content is binary, such as applications # or images, you may want to use "application/octet-stream" instead to # keep browsers from trying to display binary files as though they are # text.
+# DefaultType is the default MIME type the server will use for a document
+# if it cannot otherwise determine one, such as from filename extensions.
+# If your server contains mostly text or HTML documents, "text/plain" is
+# a good value.  If most of your content is binary, such as applications
+# or images, you may want to use "application/octet-stream" instead to
+# keep browsers from trying to display binary files as though they are
+# text.
 #
 DefaultType text/plain
 
 
 #
-# HostnameLookups: Log the names of clients or just their IP addresses # e.g., www.apache.org (on) or 204.62.129.132 (off).
-# The default is off because it'd be overall better for the net if people # had to knowingly turn this feature on, since enabling it means that # each client request will result in AT LEAST one lookup request to the # nameserver.
+# HostnameLookups: Log the names of clients or just their IP addresses
+# e.g., www.apache.org (on) or 204.62.129.132 (off).
+# The default is off because it'd be overall better for the net if people
+# had to knowingly turn this feature on, since enabling it means that
+# each client request will result in AT LEAST one lookup request to the
+# nameserver.
 #
 HostnameLookups Off
 
 # ErrorLog: The location of the error log file.
-# If you do not specify an ErrorLog directive within a <VirtualHost> # container, error messages relating to that virtual host will be # logged here.  If you *do* define an error logfile for a <VirtualHost> # container, that host's errors will be logged there and not here.
+# If you do not specify an ErrorLog directive within a <VirtualHost>
+# container, error messages relating to that virtual host will be
+# logged here.  If you *do* define an error logfile for a <VirtualHost>
+# container, that host's errors will be logged there and not here.
 #
-ErrorLog /var/log/httpd/error.log 
+ErrorLog /var/log/httpd/error.log
 
 #
 # LogLevel: Control the number of messages logged to the error_log.
-# Possible values include: debug, info, notice, warn, error, crit, # alert, emerg.
+# Possible values include: debug, info, notice, warn, error, crit,
+# alert, emerg.
 #
 LogLevel warn
 
@@ -109,12 +141,19 @@ Include /etc/httpd/mods-enabled/*.conf
 Include /etc/httpd/ports.conf
 
 #
-# The following directives define some format nicknames for use with # a CustomLog directive (see below).
+# The following directives define some format nicknames for use with
+# a CustomLog directive (see below).
 #
-LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined LogFormat "%h %l %u %t \"%r\" %>s %b" common LogFormat "%{Referer}i -> %U" referer LogFormat "%{User-agent}i" agent #
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %b" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+#
 
 # Customizable error responses come in three flavors:
-# 1) plain text 2) local redirects 3) external redirects # # Some examples:
+# 1) plain text 2) local redirects 3) external redirects
+#
+# Some examples:
 #ErrorDocument 500 "The server made a boo boo."
 #ErrorDocument 404 /missing.html
 #ErrorDocument 404 "/cgi-bin/missing_handler.pl"
@@ -124,15 +163,23 @@ LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combine
 #
 # Putting this all together, we can internationalize error responses.
 #
-# We use Alias to redirect any /error/HTTP_<error>.html.var response to # our collection of by-error message multi-language collections.  We use # includes to substitute the appropriate text.
+# We use Alias to redirect any /error/HTTP_<error>.html.var response to
+# our collection of by-error message multi-language collections.  We use
+# includes to substitute the appropriate text.
 #
-# You can modify the messages' appearance without changing any of the # default HTTP_<error>.html.var files by adding the line:
+# You can modify the messages' appearance without changing any of the
+# default HTTP_<error>.html.var files by adding the line:
 #
 #   Alias /error/include/ "/your/include/path/"
 #
-# which allows you to create your own set of files by starting with the # /usr/share/apache2/error/include/ files and copying them to /your/include/path/, # even on a per-VirtualHost basis.  The default include files will display # your Apache version number and your ServerAdmin email address regardless # of the setting of ServerSignature.
+# which allows you to create your own set of files by starting with the
+# /usr/share/apache2/error/include/ files and copying them to /your/include/path/,
+# even on a per-VirtualHost basis.  The default include files will display
+# your Apache version number and your ServerAdmin email address regardless
+# of the setting of ServerSignature.
 #
-# The internationalized error documents require mod_alias, mod_include # and mod_negotiation.  To activate them, uncomment the following 30 lines.
+# The internationalized error documents require mod_alias, mod_include
+# and mod_negotiation.  To activate them, uncomment the following 30 lines.
 
 #    Alias /error/ "/usr/share/apache2/error/"
 #
@@ -167,7 +214,8 @@ LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combine
 
 
 
-# Include generic snippets of statements Include /etc/httpd/conf.d/*.conf
+# Include generic snippets of statements
+Include /etc/httpd/conf.d/*.conf
 
 # Include the virtual host configurations:
 Include /etc/httpd/sites-enabled/
