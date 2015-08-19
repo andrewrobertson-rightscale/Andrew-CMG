@@ -116,7 +116,13 @@ $sites = array(
 	'thefirearmsforum.com',
 	'beginningfarmers.org',
 	'microskiff.com',
-	'biggamehunt.net',
+	'biggamehunt.net' => array(
+		'aliases' => array(
+			'st1.biggamehunt.net',
+			'st2.biggamehunt.net',
+			'st3.biggamehunt.net',
+		),
+	),
 );
 
 /**
