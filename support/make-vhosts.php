@@ -46,8 +46,6 @@
  * );
  */
 
-
-
 /**
  * Config format:
  * base_vhost_index:	the starting numeric index for the vhost files created (e.g. 10)
@@ -55,9 +53,9 @@
  * port:				port the virtualhost listens on
  */
 $cfg = array(
-    'base_vhost_index' 	=> 10,
-    'base_recipe_name'	=> 'vhost_',
-    'port'				=> 8000
+	'base_vhost_index' => 10,
+	'base_recipe_name' => 'vhost_',
+	'port' => 8000,
 );
 
 //Reset the vhost_index
@@ -68,59 +66,58 @@ $vhost_index = $cfg['base_vhost_index'];
  * 	'subdomain' => '/doc/root'
  */
 $subdomains = array(
-    'www' => '/home/vhosts/@@site@@'
+	'www' => '/home/vhosts/@@site@@',
 );
 
 /**
  * See file comment at head for docs on $sites array
  */
 $sites = array(
-    //vhost with aliases and redirects
-    'indianasportsman.com' => array(
-        'redirects' => array(
-            'hoosierhunting.net',
-            'indianahuntingforum.com',
-            'indianamasteranglers.com',
-            'indianaoutdoorsman.com'
-        )
-    ),
-    'mainehuntingforums.com',
-    'arizonahuntingforums.com',
-    'wisconsinoutdoorsman.com' => array(
-        'aliases' => array(
-            'wisconsintroutfishing.com',
-            'wisconsintroutstreams.com'
-        )
-    ),
-    'theboxotruth.com' => array(
-        'aliases' => array(
-            'tbotoh.com'
-        )
-    ),
-    'xenforo-addons_carbonmedia.net',
-    'ohiogamefishing.com',
-    'ohiosportsman.com' => array(
-        'aliases' => array(
-            'eriesportfishing.com',
-            'icefishingohio.com',
-            'ohiofishingforum.com',
-            'ohiofishingtalk.com',
-            'ohiohunter.com',
-            'ohiosportsman.net'
-        )
-    ),
-    'glocktalk.com',
-    'boiseriders.net',
-    'pnwriders.com',
-    'core.carbonmedia.net',
-    'michigan-sportsman.com',
-    'veggiegardener.com',
-    'thefirearmsforum.com',
-    'beginningfarmers.org',
-    'microskiff.com'
+	//vhost with aliases and redirects
+	'indianasportsman.com' => array(
+		'redirects' => array(
+			'hoosierhunting.net',
+			'indianahuntingforum.com',
+			'indianamasteranglers.com',
+			'indianaoutdoorsman.com',
+		),
+	),
+	'mainehuntingforums.com',
+	'arizonahuntingforums.com',
+	'wisconsinoutdoorsman.com' => array(
+		'aliases' => array(
+			'wisconsintroutfishing.com',
+			'wisconsintroutstreams.com',
+		),
+	),
+	'theboxotruth.com' => array(
+		'aliases' => array(
+			'tbotoh.com',
+		),
+	),
+	'xenforo-addons_carbonmedia.net',
+	'ohiogamefishing.com',
+	'ohiosportsman.com' => array(
+		'aliases' => array(
+			'eriesportfishing.com',
+			'icefishingohio.com',
+			'ohiofishingforum.com',
+			'ohiofishingtalk.com',
+			'ohiohunter.com',
+			'ohiosportsman.net',
+		),
+	),
+	'glocktalk.com',
+	'boiseriders.net',
+	'pnwriders.com',
+	'core.carbonmedia.net',
+	'michigan-sportsman.com',
+	'veggiegardener.com',
+	'thefirearmsforum.com',
+	'beginningfarmers.org',
+	'microskiff.com',
+	'biggamehunt.net',
 );
-
-
 
 /**
  * Recipe template for chef recipe which:
@@ -223,32 +220,28 @@ EOF;
  */
 $metadata_template = 'recipe "cmg_oo::@@recipe_name@@", "Sets up the @@vhost_domain_name@@ vhost(s) and alias(es) (if applicable)."';
 
-
-
 // Process the $sites array and create supporting files
-foreach($sites as $site => $vhosts) {
-    if (is_array($vhosts)) {
-        //process aliases
-        if (array_key_exists('aliases', $vhosts) && count($vhosts['aliases']) > 0) {
-            create_vhost($site, $vhosts['aliases']);
-        } else {
-            //create vhost without aliases
-            create_vhost($site);
-        }
-        //process redirects
-        if (array_key_exists('redirects', $vhosts) && count($vhosts['redirects']) > 0) {
-            //create vhost redirects
-            foreach($vhosts['redirects'] as $redirect) {
-                create_vhost_redirect($redirect, $site);
-            }
-        }
-    } else {
-        //just a regular entry, no redirects or aliases because no array for domain
-        create_vhost($vhosts);
-    }
+foreach ($sites as $site => $vhosts) {
+	if (is_array($vhosts)) {
+		//process aliases
+		if (array_key_exists('aliases', $vhosts) && count($vhosts['aliases']) > 0) {
+			create_vhost($site, $vhosts['aliases']);
+		} else {
+			//create vhost without aliases
+			create_vhost($site);
+		}
+		//process redirects
+		if (array_key_exists('redirects', $vhosts) && count($vhosts['redirects']) > 0) {
+			//create vhost redirects
+			foreach ($vhosts['redirects'] as $redirect) {
+				create_vhost_redirect($redirect, $site);
+			}
+		}
+	} else {
+		//just a regular entry, no redirects or aliases because no array for domain
+		create_vhost($vhosts);
+	}
 }
-
-
 
 /**
  * Creates a vhost with optional ServerAlias(es).
@@ -259,67 +252,65 @@ foreach($sites as $site => $vhosts) {
  * @return void
  */
 function create_vhost($domain, $aliases = null) {
-    global
-        $subdomains,
-        $vhost_index,
-        $cfg,
-        $recipe_template,
-        $conf_template,
-        $metadata_template;
+	global
+	$subdomains,
+	$vhost_index,
+	$cfg,
+	$recipe_template,
+	$conf_template,
+	$metadata_template;
 
-    $site_name = $site = $domain;
-    
-    //add subdomains
-    foreach($subdomains as $subdomain => $docroot) {
-        $docroot = str_replace('@@site@@', $site_name, $docroot);
-        if (!empty($subdomain)) {
-            $site = "{$subdomain}.{$site_name}";
-        }
-        if (!is_null($aliases)) {
-            foreach($aliases as $idx => $alias) {
-                array_push($aliases, "{$subdomain}.{$alias}");
-            }
-        }
-    }
+	$site_name = $site = $domain;
 
-    if (!is_null($aliases)) {
-        echo "vhost: {$domain} <- (" . implode(' ', $aliases) . ")\n";
-        array_unshift($aliases, $domain);
-    } else {
-        echo "vhost: {$domain}\n";
-    }
-    $sitename_underscore = str_replace('.', '_', $domain);
-    $find = array(
-        '@@recipe_name@@',
-        '@@docroot@@',
-        '@@port@@',
-        '@@vhost_filename@@',
-        '@@vhost_domain_name@@',
-        '@@site@@',
-        '@@vhost_aliases@@',
-        '@@vhost_conf_file@@'
-    );
-    $replace = array(
-        'vhost_' . $sitename_underscore,
-        $docroot,
-        $cfg['port'],
-        "{$vhost_index}-{$site}",
-        $site,
-        $site,
-        (!is_null($aliases)) ? 'ServerAlias ' . implode(' ', $aliases) : "ServerAlias {$domain}",
-    );
-    array_push($replace, "{$replace[0]}.conf.erb");
-    $recipe_tmp = str_replace($find, $replace, $recipe_template);
-    $conf_tmp = str_replace($find, $replace, $conf_template);
-    $metadata_tmp = str_replace($find, $replace, $metadata_template);
-    create_file("{$replace[0]}.rb", $recipe_tmp);
-    create_file("{$replace[0]}.conf.erb", $conf_tmp);
-    append_file("metadata.rb", $metadata_tmp);
-    append_file("metadata.rb", "");
-    $vhost_index++;
+	//add subdomains
+	foreach ($subdomains as $subdomain => $docroot) {
+		$docroot = str_replace('@@site@@', $site_name, $docroot);
+		if (!empty($subdomain)) {
+			$site = "{$subdomain}.{$site_name}";
+		}
+		if (!is_null($aliases)) {
+			foreach ($aliases as $idx => $alias) {
+				array_push($aliases, "{$subdomain}.{$alias}");
+			}
+		}
+	}
+
+	if (!is_null($aliases)) {
+		echo "vhost: {$domain} <- (" . implode(' ', $aliases) . ")\n";
+		array_unshift($aliases, $domain);
+	} else {
+		echo "vhost: {$domain}\n";
+	}
+	$sitename_underscore = str_replace('.', '_', $domain);
+	$find = array(
+		'@@recipe_name@@',
+		'@@docroot@@',
+		'@@port@@',
+		'@@vhost_filename@@',
+		'@@vhost_domain_name@@',
+		'@@site@@',
+		'@@vhost_aliases@@',
+		'@@vhost_conf_file@@',
+	);
+	$replace = array(
+		'vhost_' . $sitename_underscore,
+		$docroot,
+		$cfg['port'],
+		"{$vhost_index}-{$site}",
+		$site,
+		$site,
+		(!is_null($aliases)) ? 'ServerAlias ' . implode(' ', $aliases) : "ServerAlias {$domain}",
+	);
+	array_push($replace, "{$replace[0]}.conf.erb");
+	$recipe_tmp = str_replace($find, $replace, $recipe_template);
+	$conf_tmp = str_replace($find, $replace, $conf_template);
+	$metadata_tmp = str_replace($find, $replace, $metadata_template);
+	create_file("{$replace[0]}.rb", $recipe_tmp);
+	create_file("{$replace[0]}.conf.erb", $conf_tmp);
+	append_file("metadata.rb", $metadata_tmp);
+	append_file("metadata.rb", "");
+	$vhost_index++;
 }
-
-
 
 /**
  * Creates a vhost redirect using RedirectMatch.
@@ -330,61 +321,59 @@ function create_vhost($domain, $aliases = null) {
  * @return void
  */
 function create_vhost_redirect($redirect, $domain) {
-    global
-        $subdomains,
-        $vhost_index,
-        $cfg,
-        $recipe_template,
-        $redirect_conf_template,
-        $metadata_template;
+	global
+	$subdomains,
+	$vhost_index,
+	$cfg,
+	$recipe_template,
+	$redirect_conf_template,
+	$metadata_template;
 
-    $site_name = $site = $domain;
-    
-    //add subdomains
-    foreach($subdomains as $subdomain => $docroot) {
-        $docroot = str_replace('@@site@@', $site_name, $docroot);
-        if (!empty($subdomain)) {
-            $site = "{$subdomain}.{$site_name}";
-        }
-    }
+	$site_name = $site = $domain;
 
-    echo "redirect: {$redirect} -> {$domain}\n";
-    $sitename_underscore = str_replace('.', '_', $site);
-    $redirect_underscore = str_replace('.', '_', $redirect);
+	//add subdomains
+	foreach ($subdomains as $subdomain => $docroot) {
+		$docroot = str_replace('@@site@@', $site_name, $docroot);
+		if (!empty($subdomain)) {
+			$site = "{$subdomain}.{$site_name}";
+		}
+	}
 
-    $find = array(
-        '@@recipe_name@@',
-        '@@docroot@@',
-        '@@port@@',
-        '@@vhost_filename@@',
-        '@@vhost_domain_name@@',
-        '@@site@@',
-        '@@vhost_aliases@@',
-        '@@redirected_domain@@',
-        '@@vhost_conf_file@@'
-    );
-    $replace = array(
-        'vhost_redirect_' . $redirect_underscore . '_to_' . $sitename_underscore,
-        $docroot,
-        $cfg['port'],
-        "{$vhost_index}-redirect_{$redirect}",
-        $site,
-        $site,
-        (!is_null($aliases)) ? 'ServerAlias ' . implode(' ', $aliases) : "ServerAlias www.{$redirect}",
-        $redirect
-    );
-    array_push($replace, "{$replace[0]}.conf.erb");
-    $recipe_tmp = str_replace($find, $replace, $recipe_template);
-    $conf_tmp = str_replace($find, $replace, $redirect_conf_template);
-    $metadata_tmp = str_replace($find, $replace, $metadata_template);
-    create_file("{$replace[0]}.rb", $recipe_tmp);
-    create_file("{$replace[0]}.conf.erb", $conf_tmp);
-    append_file("metadata.rb", $metadata_tmp);
-    append_file("metadata.rb", "");
-    $vhost_index++;
+	echo "redirect: {$redirect} -> {$domain}\n";
+	$sitename_underscore = str_replace('.', '_', $site);
+	$redirect_underscore = str_replace('.', '_', $redirect);
+
+	$find = array(
+		'@@recipe_name@@',
+		'@@docroot@@',
+		'@@port@@',
+		'@@vhost_filename@@',
+		'@@vhost_domain_name@@',
+		'@@site@@',
+		'@@vhost_aliases@@',
+		'@@redirected_domain@@',
+		'@@vhost_conf_file@@',
+	);
+	$replace = array(
+		'vhost_redirect_' . $redirect_underscore . '_to_' . $sitename_underscore,
+		$docroot,
+		$cfg['port'],
+		"{$vhost_index}-redirect_{$redirect}",
+		$site,
+		$site,
+		(!is_null($aliases)) ? 'ServerAlias ' . implode(' ', $aliases) : "ServerAlias www.{$redirect}",
+		$redirect,
+	);
+	array_push($replace, "{$replace[0]}.conf.erb");
+	$recipe_tmp = str_replace($find, $replace, $recipe_template);
+	$conf_tmp = str_replace($find, $replace, $redirect_conf_template);
+	$metadata_tmp = str_replace($find, $replace, $metadata_template);
+	create_file("{$replace[0]}.rb", $recipe_tmp);
+	create_file("{$replace[0]}.conf.erb", $conf_tmp);
+	append_file("metadata.rb", $metadata_tmp);
+	append_file("metadata.rb", "");
+	$vhost_index++;
 }
-
-
 
 /**
  * Simple wrapper to create a file with initial contents
@@ -393,12 +382,10 @@ function create_vhost_redirect($redirect, $domain) {
  * @return void
  */
 function create_file($filename, $contents) {
-    $fp = fopen($filename, 'w+');
-    fwrite($fp, $contents);
-    fclose($fp);
+	$fp = fopen($filename, 'w+');
+	fwrite($fp, $contents);
+	fclose($fp);
 }
-
-
 
 /**
  * Simple wrapper to append to a file with some content
@@ -407,9 +394,9 @@ function create_file($filename, $contents) {
  * @return void
  */
 function append_file($filename, $contents) {
-    $fp = fopen($filename, 'a+');
-    fwrite($fp, $contents . "\n");
-    fclose($fp);
+	$fp = fopen($filename, 'a+');
+	fwrite($fp, $contents . "\n");
+	fclose($fp);
 }
 
 ?>
