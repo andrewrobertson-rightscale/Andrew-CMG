@@ -123,6 +123,7 @@ $sites = array(
 			'st3.biggamehunt.net',
 		),
 	),
+	'pavementsucks.com',
 );
 
 /**

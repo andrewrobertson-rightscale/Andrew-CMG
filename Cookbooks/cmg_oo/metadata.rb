@@ -59,6 +59,7 @@ recipe "cmg_oo::vhost_thefirearmsforum_com", "Sets up the www.thefirearmsforum.c
 recipe "cmg_oo::vhost_beginningfarmers_org", "Sets up the www.beginningfarmers.org vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_microskiff_com", "Sets up the www.microskiff.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_biggamehunt_net", "Sets up the www.biggamehunt.net vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_pavementsucks_com", "Sets up the www.pavementsucks.com vhost(s) and alias(es) (if applicable)."
 
 #bashrc Attributes
 attribute "bashrc/server/name",
