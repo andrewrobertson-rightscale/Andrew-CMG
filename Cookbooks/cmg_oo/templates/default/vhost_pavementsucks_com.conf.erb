@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
     ServerName www.pavementsucks.com
     ServerAlias pavementsucks.com
-    DocumentRoot /home/vhosts/pavementsucks.com
+    DocumentRoot /home/vhosts/pavementsucks.com/xf
     <DirectoryMatch  /\.git/|/\.svn/ >
         Deny from all
     </DirectoryMatch>
 
-    <Directory /home/vhosts/pavementsucks.com>
+    <Directory /home/vhosts/pavementsucks.com/xf>
         Options FollowSymLinks
         AllowOverride All
         Order allow,deny
