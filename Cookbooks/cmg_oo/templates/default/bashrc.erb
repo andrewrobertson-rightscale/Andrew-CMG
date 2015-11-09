@@ -18,7 +18,9 @@ if [ -f /etc/bashrc ]; then
 fi
 
 export HISTTIMEFORMAT='%m-%d-%Y %I:%M.%S %P '
-export LANG=C
+export LANG="en_US.UTF-8"
+export LC_COLLATE="C"
+export NCURSES_NO_UTF8_ACS="1"
 export g="\033[1;30m"
 export w="\033[0;37m"
 export bw="\033[1;37m"
