@@ -57,6 +57,7 @@ recipe "cmg_oo::vhost_core_carbonmedia_net", "Sets up the core.carbonmedia.net v
 recipe "cmg_oo::vhost_michigan-sportsman_com", "Sets up the www.michigan-sportsman.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_veggiegardener_com", "Sets up the www.veggiegardener.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_thefirearmsforum_com", "Sets up the www.thefirearmsforum.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_newsletter_carbonmedia_net", "Sets up the newsletter.carbonmedia.net vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_beginningfarmers_org", "Sets up the www.beginningfarmers.org vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_microskiff_com", "Sets up the www.microskiff.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_biggamehunt_net", "Sets up the www.biggamehunt.net vhost(s) and alias(es) (if applicable)."
