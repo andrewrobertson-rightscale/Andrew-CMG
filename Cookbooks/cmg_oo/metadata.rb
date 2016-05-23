@@ -63,6 +63,7 @@ recipe "cmg_oo::vhost_microskiff_com", "Sets up the www.microskiff.com vhost(s) 
 recipe "cmg_oo::vhost_biggamehunt_net", "Sets up the www.biggamehunt.net vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_pavementsucks_com", "Sets up the www.pavementsucks.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_360tuna_com", "Sets up the www.360tuna.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::fix_curl_tls", "Fixes CURL to support TLS for PayPal requirement (updates curl using yum and city-fan repo)."
 
 #bashrc Attributes
 attribute "bashrc/server/name",
