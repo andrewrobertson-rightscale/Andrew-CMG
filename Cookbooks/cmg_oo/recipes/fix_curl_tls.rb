@@ -3,6 +3,8 @@
 # Recipe:: fix_curl_tls
 #
 
+rightscale_marker :begin
+
 bash "fix_curl_tls" do
 	user "root"
 	code <<-EOF
@@ -11,3 +13,5 @@ bash "fix_curl_tls" do
 		service httpd restart
 	EOF
 end
+
+rightscale_marker :end
