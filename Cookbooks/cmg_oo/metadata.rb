@@ -21,6 +21,7 @@ recipe "cmg_oo::mount_nfs_vhosts", "Mounts /home/vhosts via NFS via SoftNAS NFS 
 recipe "cmg_oo::bashrc", "Sets up the bash environment."
 recipe "cmg_oo::extra_tools", "Installs some extra tools from yum repos."
 recipe "cmg_oo::php_ini", "Sets up php.ini file."
+recipe "cmg_oo::php56_ini", "Sets up php.ini file (v5.6+)."
 recipe "cmg_oo::php_apc_ini", "Sets up php.d/apc.ini file."
 recipe "cmg_oo::create_db_users", "Creates the database users for all the sites."
 recipe "cmg_oo::create_db_users_run", "Runs the create database users script."
