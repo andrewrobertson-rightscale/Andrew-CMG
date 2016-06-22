@@ -65,6 +65,7 @@ recipe "cmg_oo::vhost_pavementsucks_com", "Sets up the www.pavementsucks.com vho
 recipe "cmg_oo::vhost_360tuna_com", "Sets up the www.360tuna.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::fix_curl_tls", "Fixes CURL to support TLS for PayPal requirement (updates curl using yum and city-fan repo)."
 recipe "cmg_oo::install_php56", "Installs PHP v5.6, removes PHP v5.3"
+recipe "cmg_oo::fix_curl_tls_php56", "Fixes CURL to support TLS for PayPal requirement (updates curl using yum and city-fan repo) for PHP v5.6."
 
 #bashrc Attributes
 attribute "bashrc/server/name",
