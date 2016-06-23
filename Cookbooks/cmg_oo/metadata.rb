@@ -62,6 +62,7 @@ recipe "cmg_oo::vhost_newsletter_carbonmedia_net", "Sets up the newsletter.carbo
 recipe "cmg_oo::vhost_beginningfarmers_org", "Sets up the www.beginningfarmers.org vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_microskiff_com", "Sets up the www.microskiff.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_biggamehunt_net", "Sets up the www.biggamehunt.net vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_biggamehunt_net_80", "Sets up the www.biggamehunt.net vhost(s) and alias(es) (if applicable) on port 80 (for isolation)."
 recipe "cmg_oo::vhost_pavementsucks_com", "Sets up the www.pavementsucks.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_360tuna_com", "Sets up the www.360tuna.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::fix_curl_tls", "Fixes CURL to support TLS for PayPal requirement (updates curl using yum and city-fan repo)."
