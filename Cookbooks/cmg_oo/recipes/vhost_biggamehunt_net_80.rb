@@ -16,8 +16,8 @@ template "/etc/httpd/sites-available/31b-www.biggamehunt.net_80.conf" do
     action :create
 end
 
-link "/etc/httpd/sites-enabled/31b-www.biggamehunt.net.conf" do
-    to "/etc/httpd/sites-available/31b-www.biggamehunt.net.conf"
+link "/etc/httpd/sites-enabled/31b-www.biggamehunt.net_80.conf" do
+    to "/etc/httpd/sites-available/31b-www.biggamehunt.net_80.conf"
 end
 
 bash "restart_httpd" do
