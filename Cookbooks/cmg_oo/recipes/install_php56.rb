@@ -6,6 +6,7 @@
 bash "install_php56" do 
   user "root"
   cwd "/root"
+  not_if { `php -v`[/PHP\ 5\.6/] }
   code <<-EOH
 	wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 	rpm -Uvh epel-release-latest-6.noarch.rpm  
@@ -18,6 +19,7 @@ end
 bash "install_composer" do 
   user "root"
   cwd "/root"
+  not_if { `composer --version`[/Composer/] }
   code <<-EOH
     cd
     curl -sS https://getcomposer.org/installer | php
