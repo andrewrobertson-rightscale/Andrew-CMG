@@ -8,6 +8,7 @@ bash "install_php56" do
   cwd "/root"
   not_if { `php -v`[/PHP\ 5\.6/] }
   code <<-EOH
+  	yum -y install yum-plugin-fastestmirror
 	wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 	rpm -Uvh epel-release-latest-6.noarch.rpm  
 	rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/x86_64/ius-release-1.0-10.ius.el6.noarch.rpm
