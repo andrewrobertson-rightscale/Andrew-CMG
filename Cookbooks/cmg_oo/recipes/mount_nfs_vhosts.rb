@@ -14,7 +14,7 @@ directory "/home/vhosts" do
 end
 
 mount "/home/vhosts" do
-  device "softnas:/CMGSites/CMGVolume/vhosts"
+  device "ec2-54-88-8-232.compute-1.amazonaws.com:/CMGSites/CMGVolume/vhosts"
   fstype "nfs"
   options [
   	"nfsvers=3",
