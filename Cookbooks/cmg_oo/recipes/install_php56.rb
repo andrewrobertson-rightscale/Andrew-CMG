@@ -14,6 +14,7 @@ bash "install_php56" do
 	rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/x86_64/ius-release-1.0-10.ius.el6.noarch.rpm
     yum -y install yum-plugin-replace
 	yum -y replace php53u --replace-with=php56u
+  yum install php56u-opcache -y
   EOH
 end
 
