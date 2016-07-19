@@ -29,3 +29,11 @@ bash "install_composer" do
     ln -s /usr/local/bin/composer /usr/bin/composer
   EOH
 end
+
+template "/etc/php.d/10-opcache.ini" do
+  source "10-opcache.ini.erb"
+  owner "root"
+  group "root"
+  backup 0
+  action :create
+end
