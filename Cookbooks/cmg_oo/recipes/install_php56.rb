@@ -14,6 +14,7 @@ bash "install_php56" do
 	rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/x86_64/ius-release-1.0-10.ius.el6.noarch.rpm
     yum -y install yum-plugin-replace
 	yum -y replace php53u --replace-with=php56u
+  yum install php56u-opcache -y
   EOH
 end
 
@@ -27,4 +28,12 @@ bash "install_composer" do
     mv composer.phar /usr/local/bin/composer
     ln -s /usr/local/bin/composer /usr/bin/composer
   EOH
+end
+
+template "/etc/php.d/10-opcache.ini" do
+  source "10-opcache.ini.erb"
+  owner "root"
+  group "root"
+  backup 0
+  action :create
 end
