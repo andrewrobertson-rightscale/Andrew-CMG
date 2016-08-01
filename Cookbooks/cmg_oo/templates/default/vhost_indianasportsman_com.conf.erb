@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.indianasportsman.com
 	ServerAlias indianasportsman.com
-	DocumentRoot /home/vhosts/indianasportsman.com
+	DocumentRoot /mnt/efs/vhosts/indianasportsman.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/indianasportsman.com>
+	<Directory /mnt/efs/vhosts/indianasportsman.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny
