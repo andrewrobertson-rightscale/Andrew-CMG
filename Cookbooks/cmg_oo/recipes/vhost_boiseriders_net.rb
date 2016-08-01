@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/boiseriders.net" do
+directory "/mnt/efs/vhosts/boiseriders.net" do
 	owner "rightscale"
 	group "apache"
 	mode 00755

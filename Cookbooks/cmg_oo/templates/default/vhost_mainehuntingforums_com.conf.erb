@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.mainehuntingforums.com
 	ServerAlias mainehuntingforums.com
-	DocumentRoot /home/vhosts/mainehuntingforums.com
+	DocumentRoot /mnt/efs/vhosts/mainehuntingforums.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/mainehuntingforums.com>
+	<Directory /mnt/efs/vhosts/mainehuntingforums.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/wisconsinoutdoorsman.com" do
+directory "/mnt/efs/vhosts/wisconsinoutdoorsman.com" do
 	owner "rightscale"
 	group "apache"
 	mode 00755
