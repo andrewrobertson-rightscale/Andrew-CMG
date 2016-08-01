@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.ohiosportsman.com
 	ServerAlias ohiosportsman.com eriesportfishing.com icefishingohio.com ohiofishingforum.com ohiofishingtalk.com ohiohunter.com ohiosportsman.net www.eriesportfishing.com www.icefishingohio.com www.ohiofishingforum.com www.ohiofishingtalk.com www.ohiohunter.com www.ohiosportsman.net
-	DocumentRoot /home/vhosts/ohiosportsman.com
+	DocumentRoot /mnt/efs/vhosts/ohiosportsman.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/ohiosportsman.com>
+	<Directory /mnt/efs/vhosts/ohiosportsman.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

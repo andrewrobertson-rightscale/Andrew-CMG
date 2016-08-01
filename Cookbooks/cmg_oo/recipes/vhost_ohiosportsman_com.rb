@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/ohiosportsman.com" do
+directory "/mnt/efs/vhosts/ohiosportsman.com" do
 	owner "rightscale"
 	group "apache"
 	mode 00755
