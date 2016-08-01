@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/mainehuntingforums.com" do
+directory "/mnt/efs/vhosts/mainehuntingforums.com" do
 	owner "rightscale"
 	group "apache"
 	mode 00755
