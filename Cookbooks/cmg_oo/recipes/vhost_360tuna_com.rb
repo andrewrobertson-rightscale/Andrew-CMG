@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/360tuna.com" do
+directory "/mnt/efs/vhosts/360tuna.com" do
     owner "rightscale"
     group "apache"
     mode 00755
