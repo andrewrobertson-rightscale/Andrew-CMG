@@ -1,11 +1,11 @@
 <VirtualHost *:8000>
 	ServerName newsletter.carbonmedia.net
-	DocumentRoot /home/vhosts/newsletter.carbonmedia.net
+	DocumentRoot /mnt/efs/vhosts/newsletter.carbonmedia.net
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/newsletter.carbonmedia.net>
+	<Directory /mnt/efs/vhosts/newsletter.carbonmedia.net>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny
