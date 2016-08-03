@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.xenforo-addons_carbonmedia.net
 	ServerAlias xenforo-addons_carbonmedia.net
-	DocumentRoot /home/vhosts/xenforo-addons_carbonmedia.net
+	DocumentRoot /mnt/efs/vhosts/xenforo-addons_carbonmedia.net
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/xenforo-addons_carbonmedia.net>
+	<Directory /mnt/efs/vhosts/xenforo-addons_carbonmedia.net>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/xenforo-addons_carbonmedia.net" do
+directory "/mnt/efs/vhosts/xenforo-addons_carbonmedia.net" do
 	owner "rightscale"
 	group "apache"
 	mode 00755
