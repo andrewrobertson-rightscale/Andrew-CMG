@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/arizonahuntingtoday.com" do
+directory "/mnt/efs/vhosts/arizonahuntingtoday.com" do
 	owner "rightscale"
 	group "apache"
 	mode 00755

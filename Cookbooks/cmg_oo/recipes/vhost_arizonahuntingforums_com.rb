@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/arizonahuntingforums.com" do
+directory "/mnt/efs/vhosts/arizonahuntingforums.com" do
 	owner "rightscale"
 	group "apache"
 	mode 00755
