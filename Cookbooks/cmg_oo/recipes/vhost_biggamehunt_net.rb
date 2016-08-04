@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/biggamehunt.net" do
+directory "/mnt/efs/vhosts/biggamehunt.net" do
     owner "rightscale"
     group "apache"
     mode 00755
