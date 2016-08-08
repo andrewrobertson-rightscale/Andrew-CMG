@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/thefirearmsforum.com" do
+directory "/mnt/efs/vhosts/thefirearmsforum.com" do
 	owner "rightscale"
 	group "apache"
 	mode 00755

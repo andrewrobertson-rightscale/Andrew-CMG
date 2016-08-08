@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.pnwriders.com
 	ServerAlias pnwriders.com
-	DocumentRoot /home/vhosts/pnwriders.com
+	DocumentRoot /mnt/efs/vhosts/pnwriders.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/pnwriders.com>
+	<Directory /mnt/efs/vhosts/pnwriders.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
     ServerName www.360tuna.com
     ServerAlias 360tuna.com
-    DocumentRoot /home/vhosts/360tuna.com
+    DocumentRoot /mnt/efs/vhosts/360tuna.com
     <DirectoryMatch  /\.git/|/\.svn/ >
         Deny from all
     </DirectoryMatch>
 
-    <Directory /home/vhosts/360tuna.com>
+    <Directory /mnt/efs/vhosts/360tuna.com>
         Options FollowSymLinks
         AllowOverride All
         Order allow,deny

@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/glocktalk.com" do
+directory "/mnt/efs/vhosts/glocktalk.com" do
 	owner "rightscale"
 	group "apache"
 	mode 00755

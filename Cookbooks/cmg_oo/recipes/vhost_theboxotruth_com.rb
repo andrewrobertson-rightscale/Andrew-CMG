@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/theboxotruth.com" do
+directory "/mnt/efs/vhosts/theboxotruth.com" do
 	owner "rightscale"
 	group "apache"
 	mode 00755

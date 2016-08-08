@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.ohiogamefishing.com
 	ServerAlias ohiogamefishing.com
-	DocumentRoot /home/vhosts/ohiogamefishing.com
+	DocumentRoot /mnt/efs/vhosts/ohiogamefishing.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/ohiogamefishing.com>
+	<Directory /mnt/efs/vhosts/ohiogamefishing.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

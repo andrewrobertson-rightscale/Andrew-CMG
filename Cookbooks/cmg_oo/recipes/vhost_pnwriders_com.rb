@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/pnwriders.com" do
+directory "/mnt/efs/vhosts/pnwriders.com" do
 	owner "rightscale"
 	group "apache"
 	mode 00755

@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/pavementsucks.com" do
+directory "/mnt/efs/vhosts/pavementsucks.com" do
     owner "rightscale"
     group "apache"
     mode 00755

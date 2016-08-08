@@ -5,7 +5,7 @@
 
 rightscale_marker :begin
 
-template "/home/vhosts/_GLOBAL.php" do
+template "/mnt/efs/vhosts/_GLOBAL.php" do
   source "_GLOBAL.php.erb"
   owner "root"
   group "root"

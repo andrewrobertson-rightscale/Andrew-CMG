@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/newsletter.carbonmedia.net" do
+directory "/mnt/efs/vhosts/newsletter.carbonmedia.net" do
 	owner "rightscale"
 	group "apache"
 	mode 00755

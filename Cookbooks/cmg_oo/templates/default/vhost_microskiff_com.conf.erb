@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
     ServerName www.microskiff.com
     ServerAlias microskiff.com
-    DocumentRoot /home/vhosts/microskiff.com
+    DocumentRoot /mnt/efs/vhosts/microskiff.com
     <DirectoryMatch  /\.git/|/\.svn/ >
         Deny from all
     </DirectoryMatch>
 
-    <Directory /home/vhosts/microskiff.com>
+    <Directory /mnt/efs/vhosts/microskiff.com>
         Options FollowSymLinks
         AllowOverride All
         Order allow,deny

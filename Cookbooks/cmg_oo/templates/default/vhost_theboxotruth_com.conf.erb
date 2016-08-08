@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.theboxotruth.com
 	ServerAlias theboxotruth.com tbotoh.com www.tbotoh.com
-	DocumentRoot /home/vhosts/theboxotruth.com
+	DocumentRoot /mnt/efs/vhosts/theboxotruth.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/theboxotruth.com>
+	<Directory /mnt/efs/vhosts/theboxotruth.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny
