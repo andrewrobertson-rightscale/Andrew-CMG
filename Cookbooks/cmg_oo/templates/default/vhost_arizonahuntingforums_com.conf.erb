@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.arizonahuntingforums.com
 	ServerAlias arizonahuntingforums.com
-	DocumentRoot /home/vhosts/arizonahuntingforums.com
+	DocumentRoot /mnt/efs/vhosts/arizonahuntingforums.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/arizonahuntingforums.com>
+	<Directory /mnt/efs/vhosts/arizonahuntingforums.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

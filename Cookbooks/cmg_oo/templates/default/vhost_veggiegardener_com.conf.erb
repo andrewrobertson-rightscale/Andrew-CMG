@@ -1,13 +1,13 @@
 <VirtualHost *:8000>
 	ServerName www.veggiegardener.com
 	ServerAlias veggiegardener.com
-	DocumentRoot /home/vhosts/core.carbonmedia.net
-	Alias /forum /home/vhosts/veggiegardener.com/forum
+	DocumentRoot /mnt/efs/vhosts/core.carbonmedia.net
+	Alias /forum /mnt/efs/vhosts/veggiegardener.com/forum
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/veggiegardener.com>
+	<Directory /mnt/efs/vhosts/veggiegardener.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

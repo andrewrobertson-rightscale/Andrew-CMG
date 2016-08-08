@@ -1,17 +1,17 @@
 <VirtualHost *:8000>
 	ServerName www.michigan-sportsman.com
 	ServerAlias michigan-sportsman.com
-	DocumentRoot /home/vhosts/core.carbonmedia.net
-    Alias /forum /home/vhosts/michigan-sportsman.com/forum
-    Alias /forums /home/vhosts/michigan-sportsman.com/public_html/forum
-    Alias /classifieds /home/vhosts/michigan-sportsman.com/classifieds
-    Alias /photopost /home/vhosts/michigan-sportsman.com/photopost
-    Alias /reviewpost /home/vhosts/michigan-sportsman.com/reviewpost
+	DocumentRoot /mnt/efs/vhosts/core.carbonmedia.net
+    Alias /forum /mnt/efs/vhosts/michigan-sportsman.com/forum
+    Alias /forums /mnt/efs/vhosts/michigan-sportsman.com/public_html/forum
+    Alias /classifieds /mnt/efs/vhosts/michigan-sportsman.com/classifieds
+    Alias /photopost /mnt/efs/vhosts/michigan-sportsman.com/photopost
+    Alias /reviewpost /mnt/efs/vhosts/michigan-sportsman.com/reviewpost
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /home/vhosts/michigan-sportsman.com>
+	<Directory /mnt/efs/vhosts/michigan-sportsman.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

@@ -32,7 +32,7 @@ end
 
 cron "biggamehunt_net_cron" do
   minute "00"
-  command "cd /home/vhosts/biggamehunt.net && /usr/bin/drush cron"
+  command "cd /mnt/storage1/biggamehunt.net && /usr/bin/drush cron"
   action :create
 end
 
