@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.glocktalk.com
 	ServerAlias glocktalk.com
-	DocumentRoot /mnt/efs/vhosts/glocktalk.com
+	DocumentRoot /home/vhosts/glocktalk.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /mnt/efs/vhosts/glocktalk.com>
+	<Directory /home/vhosts/glocktalk.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

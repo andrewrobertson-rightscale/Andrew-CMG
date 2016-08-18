@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.core.carbonmedia.net
 	ServerAlias core.carbonmedia.net
-	DocumentRoot /mnt/efs/vhosts/core.carbonmedia.net
+	DocumentRoot /home/vhosts/core.carbonmedia.net
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /mnt/efs/vhosts/core.carbonmedia.net>
+	<Directory /home/vhosts/core.carbonmedia.net>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny
