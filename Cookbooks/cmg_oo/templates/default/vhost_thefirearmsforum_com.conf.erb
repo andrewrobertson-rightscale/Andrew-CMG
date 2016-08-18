@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.thefirearmsforum.com
 	ServerAlias thefirearmsforum.com
-	DocumentRoot /mnt/efs/vhosts/thefirearmsforum.com
+	DocumentRoot /home/vhosts/thefirearmsforum.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /mnt/efs/vhosts/thefirearmsforum.com>
+	<Directory /home/vhosts/thefirearmsforum.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

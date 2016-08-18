@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.wisconsinoutdoorsman.com
 	ServerAlias wisconsinoutdoorsman.com wisconsintroutfishing.com wisconsintroutstreams.com www.wisconsintroutfishing.com www.wisconsintroutstreams.com
-	DocumentRoot /mnt/efs/vhosts/wisconsinoutdoorsman.com
+	DocumentRoot /home/vhosts/wisconsinoutdoorsman.com
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /mnt/efs/vhosts/wisconsinoutdoorsman.com>
+	<Directory /home/vhosts/wisconsinoutdoorsman.com>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny

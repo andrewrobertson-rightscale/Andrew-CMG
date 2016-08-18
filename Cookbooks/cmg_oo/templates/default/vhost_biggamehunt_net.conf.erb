@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
     ServerName www.biggamehunt.net
     ServerAlias biggamehunt.net st1.biggamehunt.net st2.biggamehunt.net st3.biggamehunt.net
-    DocumentRoot /mnt/efs/vhosts/biggamehunt.net
+    DocumentRoot /home/vhosts/biggamehunt.net
     <DirectoryMatch  /\.git/|/\.svn/ >
         Deny from all
     </DirectoryMatch>
 
-    <Directory /mnt/efs/vhosts/biggamehunt.net>
+    <Directory /home/vhosts/biggamehunt.net>
         Options FollowSymLinks
         AllowOverride All
         Order allow,deny

@@ -1,12 +1,12 @@
 <VirtualHost *:8000>
 	ServerName www.boiseriders.net
 	ServerAlias boiseriders.net
-	DocumentRoot /mnt/efs/vhosts/boiseriders.net
+	DocumentRoot /home/vhosts/boiseriders.net
 	<DirectoryMatch  /\.git/|/\.svn/ >
 		Deny from all
 	</DirectoryMatch>
 
-	<Directory /mnt/efs/vhosts/boiseriders.net>
+	<Directory /home/vhosts/boiseriders.net>
 		Options FollowSymLinks
 		AllowOverride All
 		Order allow,deny
