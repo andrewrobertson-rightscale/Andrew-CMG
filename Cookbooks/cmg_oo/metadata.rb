@@ -4,7 +4,7 @@ maintainer_email 'rchristy@carbonmediagroup.com'
 license          'All rights reserved'
 description      'CMG Owned and Operated Cookbook'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.2'
+version          '0.2.3'
 
 depends "rightscale"
 depends "repo_git"
@@ -70,6 +70,7 @@ recipe "cmg_oo::fix_curl_tls", "Fixes CURL to support TLS for PayPal requirement
 recipe "cmg_oo::install_php56", "Installs PHP v5.6, removes PHP v5.3"
 recipe "cmg_oo::fix_curl_tls_php56", "Fixes CURL to support TLS for PayPal requirement (updates curl using yum and city-fan repo) for PHP v5.6."
 recipe "cmg_oo::newsletter_cron", "Runs the newsletter.carbonmedia.net cron job."
+recipe "cmg_oo::vhost_heartbeat_80", "heartbeat script"
 
 #bashrc Attributes
 attribute "bashrc/server/name",
