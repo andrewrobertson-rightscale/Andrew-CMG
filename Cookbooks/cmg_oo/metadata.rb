@@ -71,6 +71,7 @@ recipe "cmg_oo::install_php56", "Installs PHP v5.6, removes PHP v5.3"
 recipe "cmg_oo::fix_curl_tls_php56", "Fixes CURL to support TLS for PayPal requirement (updates curl using yum and city-fan repo) for PHP v5.6."
 recipe "cmg_oo::newsletter_cron", "Runs the newsletter.carbonmedia.net cron job."
 recipe "cmg_oo::vhost_heartbeat_80", "heartbeat script"
+recipe "cmg_oo::install_core_oo_app1_github_ssh_key", "Installs the SSH deploy key onto app1 so we can pull code with GitHub for core-sites."
 
 #bashrc Attributes
 attribute "bashrc/server/name",
