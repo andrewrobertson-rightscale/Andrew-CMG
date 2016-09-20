@@ -17,7 +17,7 @@ template "/etc/httpd/sites-available/99-www.heartbeat.conf" do
 end
 
 link "/etc/httpd/sites-enabled/99-www.heartbeat.com.conf" do
-    to "/etc/httpd/sites-available/17-www.heartbeet.com.conf"
+    to "/etc/httpd/sites-available/99-www.heartbeat.com.conf"
 end
 
 template "/mnt/efs/vhosts/heartbeat/db-heartbeat.php" do
