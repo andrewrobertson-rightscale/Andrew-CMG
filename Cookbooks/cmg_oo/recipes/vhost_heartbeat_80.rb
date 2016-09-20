@@ -8,7 +8,7 @@ directory "/mnt/efs/vhosts/heartbeat" do
 	action :create
 end
 
-template "/etc/httpd/sites-available/99-www.heartbeat.conf" do
+template "/etc/httpd/sites-available/99-www.heartbeat.com.conf" do
 	source "vhost_heartbeat.conf.erb"
 	owner "root"
 	group "root"
