@@ -124,6 +124,9 @@ $sites = array(
 		),
 	),
 	'pavementsucks.com',
+  'gunandgame.com',
+  'msgo.com',
+  '911addicts.com'
 );
 
 /**

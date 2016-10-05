@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/pavementsucks.com" do
+directory "/home/vhosts/msgo.com" do
     owner "rightscale"
     group "apache"
     mode 00755
@@ -8,16 +8,16 @@ directory "/home/vhosts/pavementsucks.com" do
     action :create
 end
 
-template "/etc/httpd/sites-available/32-www.pavementsucks.com.conf" do
-    source "vhost_pavementsucks_com.conf.erb"
+template "/etc/httpd/sites-available/34-www.msgo.com.conf" do
+    source "vhost_msgo_com.conf.erb"
     owner "root"
     group "root"
     mode "0644"
     action :create
 end
 
-link "/etc/httpd/sites-enabled/32-www.pavementsucks.com.conf" do
-    to "/etc/httpd/sites-available/32-www.pavementsucks.com.conf"
+link "/etc/httpd/sites-enabled/34-www.msgo.com.conf" do
+    to "/etc/httpd/sites-available/34-www.msgo.com.conf"
 end
 
 bash "restart_httpd" do

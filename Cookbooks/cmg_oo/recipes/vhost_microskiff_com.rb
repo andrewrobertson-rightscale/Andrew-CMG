@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/mnt/efs/vhosts/microskiff.com" do
+directory "/home/vhosts/microskiff.com" do
     owner "rightscale"
     group "apache"
     mode 00755
