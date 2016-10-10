@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/beginningfarmers.org" do
+directory "/home/vhosts/core.carbonmedia.net" do
     owner "rightscale"
     group "apache"
     mode 02775
