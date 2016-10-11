@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/indianasportsman.com" do
+directory "/home/vhosts/gunandgame.com" do
     owner "rightscale"
     group "apache"
     mode 02775
@@ -8,16 +8,16 @@ directory "/home/vhosts/indianasportsman.com" do
     action :create
 end
 
-template "/etc/httpd/sites-available/10-www.indianasportsman.com.conf" do
-    source "vhost_indianasportsman_com.conf.erb"
+template "/etc/httpd/sites-available/33-www.gunandgame.com.conf" do
+    source "vhost_gunandgame_com.conf.erb"
     owner "root"
     group "root"
     mode "0644"
     action :create
 end
 
-link "/etc/httpd/sites-enabled/10-www.indianasportsman.com.conf" do
-    to "/etc/httpd/sites-available/10-www.indianasportsman.com.conf"
+link "/etc/httpd/sites-enabled/33-www.gunandgame.com.conf" do
+    to "/etc/httpd/sites-available/33-www.gunandgame.com.conf"
 end
 
 bash "restart_httpd" do

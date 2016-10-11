@@ -1,9 +1,9 @@
 rightscale_marker :begin
 
-directory "/mnt/efs/vhosts/core.carbonmedia.net" do
+directory "/home/vhosts/core.carbonmedia.net" do
     owner "rightscale"
     group "apache"
-    mode 00755
+    mode 02775
     recursive true
     action :create
 end

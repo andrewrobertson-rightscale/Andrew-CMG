@@ -1,9 +1,9 @@
 rightscale_marker :begin
 
-directory "/mnt/efs/vhosts/biggamehunt.net" do
+directory "/home/vhosts/biggamehunt.net" do
     owner "rightscale"
     group "apache"
-    mode 00755
+    mode 02775
     recursive true
     action :create
 end

@@ -111,10 +111,10 @@ $sites = array(
 	'boiseriders.net',
 	'pnwriders.com',
 	'core.carbonmedia.net',
-	'michigan-sportsman.com',
-	'veggiegardener.com',
+	//'michigan-sportsman.com',
+	//'veggiegardener.com',
 	'thefirearmsforum.com',
-	'beginningfarmers.org',
+	//'beginningfarmers.org',
 	'microskiff.com',
 	'biggamehunt.net' => array(
 		'aliases' => array(
@@ -124,6 +124,9 @@ $sites = array(
 		),
 	),
 	'pavementsucks.com',
+  'gunandgame.com',
+  'msgo.com',
+  '1911addicts.com'
 );
 
 /**
@@ -139,7 +142,7 @@ rightscale_marker :begin
 directory "@@docroot@@" do
     owner "rightscale"
     group "apache"
-    mode 00755
+    mode 02775
     recursive true
     action :create
 end
