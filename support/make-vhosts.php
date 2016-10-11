@@ -111,10 +111,10 @@ $sites = array(
 	'boiseriders.net',
 	'pnwriders.com',
 	'core.carbonmedia.net',
-	'michigan-sportsman.com',
-	'veggiegardener.com',
+	//'michigan-sportsman.com',
+	//'veggiegardener.com',
 	'thefirearmsforum.com',
-	'beginningfarmers.org',
+	//'beginningfarmers.org',
 	'microskiff.com',
 	'biggamehunt.net' => array(
 		'aliases' => array(
