@@ -75,7 +75,7 @@ recipe "cmg_oo::install_core_oo_app1_github_ssh_key", "Installs the SSH deploy k
 recipe "cmg_oo::vhost_gunandgame_com", "Sets up the www.gunandgame.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_msgo_com", "Sets up the www.msgo.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_1911addicts_com", "Sets up the www.911addicts.com vhost(s) and alias(es) (if applicable)."
-recipe "cmg_oo:install_wpcli", ""
+recipe "cmg_oo::install_wpcli", ""
 
 #bashrc Attributes
 attribute "bashrc/server/name",
