@@ -42,3 +42,7 @@ export pl2="\n\[$g\]$l_bl$l_m\[$w\]\u\[$bg\]@\[$w\]<%= @server_deployment %>: <%
 export PS1="$pl1$pl2"
 export EDITOR=nano
 PROMPT_COMMAND='echo -ne "\033]0;${USER} @ <%= @server_deployment %> - <%= @server_name %>:${PWD/#$HOME/~}"; echo -ne "\007"'
+
+#wp-cli
+alias wp='/usr/local/bin/wp-cli.phar --allow-root'
+source /usr/local/bin/wp-completion.bash
