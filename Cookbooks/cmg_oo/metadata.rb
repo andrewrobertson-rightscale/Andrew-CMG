@@ -4,6 +4,7 @@ maintainer_email 'rchristy@carbonmediagroup.com'
 license          'All rights reserved'
 description      'CMG Owned and Operated Cookbook'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+
 version          '0.2.8'
 
 depends "rightscale"
@@ -66,6 +67,8 @@ recipe "cmg_oo::vhost_biggamehunt_net", "Sets up the www.biggamehunt.net vhost(s
 recipe "cmg_oo::vhost_biggamehunt_net_80", "Sets up the www.biggamehunt.net vhost(s) and alias(es) (if applicable) on port 80 (for isolation)."
 recipe "cmg_oo::vhost_pavementsucks_com", "Sets up the www.pavementsucks.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_360tuna_com", "Sets up the www.360tuna.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_steyrclub_com", "Sets up the www.steyrclub.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_beekeepingforums_com", "Sets up the www.beekeepingforums.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::fix_curl_tls", "Fixes CURL to support TLS for PayPal requirement (updates curl using yum and city-fan repo)."
 recipe "cmg_oo::install_php56", "Installs PHP v5.6, removes PHP v5.3"
 recipe "cmg_oo::fix_curl_tls_php56", "Fixes CURL to support TLS for PayPal requirement (updates curl using yum and city-fan repo) for PHP v5.6."
@@ -74,8 +77,9 @@ recipe "cmg_oo::vhost_heartbeat_80", "heartbeat script"
 recipe "cmg_oo::install_core_oo_app1_github_ssh_key", "Installs the SSH deploy key onto app1 so we can pull code with GitHub for core-sites."
 recipe "cmg_oo::vhost_gunandgame_com", "Sets up the www.gunandgame.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_msgo_com", "Sets up the www.msgo.com vhost(s) and alias(es) (if applicable)."
-recipe "cmg_oo::vhost_1911addicts_com", "Sets up the www.911addicts.com vhost(s) and alias(es) (if applicable)."
-recipe "cmg_oo::install_wpcli", "Installs the Wordpress Command Line Interface."
+recipe "cmg_oo::vhost_1911addicts_com", "Sets up the www.1911addicts.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_homesteadingtoday_com", "Sets up the www.homesteadingtoday.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::install_wpcli", ""
 
 #bashrc Attributes
 attribute "bashrc/server/name",
