@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/morelss.com" do
+directory "/home/vhosts/morels.com" do
     owner "rightscale"
     group "apache"
     mode 02775
@@ -8,7 +8,7 @@ directory "/home/vhosts/morelss.com" do
     action :create
 end
 
-template "/etc/httpd/sites-available/38-www.morelss.com.conf" do
+template "/etc/httpd/sites-available/38-www.morels.com.conf" do
     source "vhost_morels_com.conf.erb"
     owner "root"
     group "root"
@@ -16,8 +16,8 @@ template "/etc/httpd/sites-available/38-www.morelss.com.conf" do
     action :create
 end
 
-link "/etc/httpd/sites-enabled/38-www.morelss.com.conf" do
-    to "/etc/httpd/sites-available/38-www.morelss.com.conf"
+link "/etc/httpd/sites-enabled/38-www.morels.com.conf" do
+    to "/etc/httpd/sites-available/38-www.morels.com.conf"
 end
 
 bash "restart_httpd" do
