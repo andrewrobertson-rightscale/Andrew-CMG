@@ -4,7 +4,8 @@ maintainer_email 'rchristy@carbonmediagroup.com'
 license          'All rights reserved'
 description      'CMG Owned and Operated Cookbook'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.7'
+
+version          '0.2.8'
 
 depends "rightscale"
 depends "repo_git"
