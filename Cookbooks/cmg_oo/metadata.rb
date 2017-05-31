@@ -73,13 +73,12 @@ recipe "cmg_oo::fix_curl_tls", "Fixes CURL to support TLS for PayPal requirement
 recipe "cmg_oo::install_php56", "Installs PHP v5.6, removes PHP v5.3"
 recipe "cmg_oo::fix_curl_tls_php56", "Fixes CURL to support TLS for PayPal requirement (updates curl using yum and city-fan repo) for PHP v5.6."
 recipe "cmg_oo::newsletter_cron", "Runs the newsletter.carbonmedia.net cron job."
-recipe "cmg_oo::vhost_heartbeat_80", "heartbeat script"
-recipe "cmg_oo::install_core_oo_app1_github_ssh_key", "Installs the SSH deploy key onto app1 so we can pull code with GitHub for core-sites."
+
 recipe "cmg_oo::vhost_gunandgame_com", "Sets up the www.gunandgame.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_msgo_com", "Sets up the www.msgo.com vhost(s) and alias(es) (if applicable)."
-recipe "cmg_oo::vhost_1911addicts_com", "Sets up the www.1911addicts.com vhost(s) and alias(es) (if applicable)."
-recipe "cmg_oo::vhost_homesteadingtoday_com", "Sets up the www.homesteadingtoday.com vhost(s) and alias(es) (if applicable)."
-recipe "cmg_oo::install_wpcli", ""
+recipe "cmg_oo::vhost_1911addicts_com", "Sets up the www.911addicts.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::install_wpcli", "Installs the Wordpress Command Line Interface."
+recipe "cmg_oo::vhost_morels_com", "Sets up the www.morels.com vhost(s) and alias(es) (if applicable)."
 
 #bashrc Attributes
 attribute "bashrc/server/name",
