@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-directory "/home/vhosts/arkansashunting.com" do
+directory "/home/vhosts/arkansashunting.net" do
     owner "rightscale"
     group "apache"
     mode 02775
@@ -8,16 +8,16 @@ directory "/home/vhosts/arkansashunting.com" do
     action :create
 end
 
-template "/etc/httpd/sites-available/39-www.arkansashunting.com.conf" do
-    source "vhost_arkansashunting_com.conf.erb"
+template "/etc/httpd/sites-available/39-www.arkansashunting.net.conf" do
+    source "vhost_arkansashunting_net.conf.erb"
     owner "root"
     group "root"
     mode "0644"
     action :create
 end
 
-link "/etc/httpd/sites-enabled/39-www.arkansashunting.com.conf" do
-    to "/etc/httpd/sites-available/39-www.arkansashunting.com.conf"
+link "/etc/httpd/sites-enabled/39-www.arkansashunting.net.conf" do
+    to "/etc/httpd/sites-available/39-www.arkansashunting.net.conf"
 end
 
 bash "restart_httpd" do
