@@ -9,7 +9,7 @@ directory "/home/vhosts/thektog.org" do
 end
 
 template "/etc/httpd/sites-available/40-www.thektog.org.conf" do
-    source "vhost_catfish1_com.conf.erb"
+    source "vhost_thektog_org.conf.erb"
     owner "root"
     group "root"
     mode "0644"
