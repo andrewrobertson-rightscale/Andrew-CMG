@@ -85,6 +85,9 @@ recipe "cmg_oo::vhost_thektog_org", "Sets up the www.thektog.org vhost(s) and al
 recipe "cmg_oo::vhost_tractorforum_com", "Sets up the www.tractorforum.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_pigforum_com", "Sets up the www.pigforum.com vhost(s) and alias(es) (if applicable)."
 recipe "cmg_oo::vhost_dairygoatinfo_com", "Sets up the www.dairygoatinfo.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_chickenforum_com", "Sets up the www.chickenforum.com vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_thegoatspot_net", "Sets up the www.thegoatspot.net vhost(s) and alias(es) (if applicable)."
+recipe "cmg_oo::vhost_missouriwhitetails_com", "Sets up the www.missouriwhitetails.com vhost(s) and alias(es) (if applicable)."
 
 #bashrc Attributes
 attribute "bashrc/server/name",
